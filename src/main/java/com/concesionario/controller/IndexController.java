@@ -15,4 +15,9 @@ public class IndexController {
     public String getAbout(){
         return "about";
     }
+
+    @GetMapping("service")
+    public String getService(){
+        return "service";
+    }
 }
