@@ -20,4 +20,9 @@ public class IndexController {
     public String getService(){
         return "service";
     }
+
+    @GetMapping("car")
+    public String getCar(){
+        return "car";
+    }
 }
