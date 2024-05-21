@@ -20,26 +20,32 @@ public class IndexController {
     public String getService(){
         return "service";
     }
+
     @GetMapping("contact")
     public String getContact(){
         return "contact";
     }
+
     @GetMapping("car")
     public String getCar(){
         return "car";
     }
+
     @GetMapping("detail")
     public String getDetail(){
         return "detail";
     }
+
     @GetMapping("booking")
     public String getBooking(){
         return "booking";
     }
+
     @GetMapping("team")
     public String getTeam(){
         return "team";
     }
+
     @GetMapping("testimonial")
     public String getTestimonial(){
         return "testimonial";
