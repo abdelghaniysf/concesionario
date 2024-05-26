@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
+    <style>
+        .privacy-policy {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .privacy-policy h2 {
+            color: #FF8000; /* Match the orange color */
+            margin-top: 20px;
+        }
+        .privacy-policy h3 {
+            color: #003366; /* Match the dark blue color */
+            margin-top: 15px;
+        }
+        .privacy-policy p {
+            margin: 10px 0;
+        }
+        .important {
+            font-weight: bold;
+            color: #FF8000; /* Match the orange color */
+        }
+    </style>
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}">
+</header>
+<!-- About Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <div class="privacy-policy">
+            <h2>Privacy Policy for Tanger Royal Cars</h2>
+            <p><strong>Effective Date: </strong><span id="current-date"></span></p>
+
+            <h3>1. Introduction</h3>
+            <p>Welcome to Tanger Royal Cars. We value your privacy and are committed to protecting your personal information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="http://localhost:8080">http://localhost:8080</a>, including any other media form, media channel, mobile website, or mobile application related or connected thereto (collectively, the "Site"). Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.</p>
+
+            <h3>2. Information We Collect</h3>
+            <p>We may collect information about you in a variety of ways. The information we may collect on the Site includes:</p>
+            <ul>
+                <li><span class="important">Personal Data:</span> Personally identifiable information, such as your name, shipping address, email address, and telephone number, and demographic information, such as your age, gender, hometown, and interests, that you voluntarily give to us when you register with the Site or when you choose to participate in various activities related to the Site, such as online chat and message boards.</li>
+                <li><span class="important">Derivative Data:</span> Information our servers automatically collect when you access the Site, such as your IP address, your browser type, your operating system, your access times, and the pages you have viewed directly before and after accessing the Site.</li>
+                <li><span class="important">Financial Data:</span> Financial information, such as data related to your payment method (e.g., valid credit card number, card brand, expiration date) that we may collect when you purchase, order, return, exchange, or request information about our services from the Site.</li>
+                <li><span class="important">Mobile Device Data:</span> Device information, such as your mobile device ID, model, and manufacturer, and information about the location of your device, if you access the Site from a mobile device.</li>
+                <li><span class="important">Third-Party Data:</span> Information from third parties, such as personal information or network friends, if you connect your account to the third party and grant the Site permission to access this information.</li>
+            </ul>
+
+            <h3>3. Use of Your Information</h3>
+            <p>Having accurate information about you permits us to provide you with a smooth, efficient, and customized experience. Specifically, we may use information collected about you via the Site to:</p>
+            <ul>
+                <li>Create and manage your account.</li>
+                <li>Process your transactions and send you related information, including purchase confirmations and invoices.</li>
+                <li>Manage your orders, rentals, and service requests.</li>
+                <li>Improve the Site and its offerings.</li>
+                <li>Monitor and analyze usage and trends to improve your experience with the Site.</li>
+                <li>Respond to customer service requests and support needs.</li>
+                <li>Send you marketing and promotional communications.</li>
+                <li>Perform other business activities as needed.</li>
+            </ul>
+
+            <h3>4. Disclosure of Your Information</h3>
+            <p>We may share information we have collected about you in certain situations. Your information may be disclosed as follows:</p>
+            <ul>
+                <li><span class="important">By Law or to Protect Rights:</span> If we believe the release of information about you is necessary to respond to legal process, to investigate or remedy potential violations of our policies, or to protect the rights, property, and safety of others, we may share your information as permitted or required by any applicable law, rule, or regulation.</li>
+                <li><span class="important">Third-Party Service Providers:</span> We may share your information with third parties that perform services for us or on our behalf, including payment processing, data analysis, email delivery, hosting services, customer service, and marketing assistance.</li>
+                <li><span class="important">Business Transfers:</span> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
+            </ul>
+
+            <h3>5. Security of Your Information</h3>
+            <p>We use administrative, technical, and physical security measures to help protect your personal information. While we have taken reasonable steps to secure the personal information you provide to us, please be aware that despite our efforts, no security measures are perfect or impenetrable, and no method of data transmission can be guaranteed against any interception or other type of misuse.</p>
+
+            <h3>6. Policy for Children</h3>
+            <p>We do not knowingly solicit information from or market to children under the age of 13. If we learn that we have collected personal information from a child under age 13 without verification of parental consent, we will delete that information as quickly as possible. If you believe we might have any information from or about a child under 13, please contact us at <a href="mailto:abdelghani.elyousfi@educa.madrid.org">abdelghani.elyousfi@educa.madrid.org</a>.</p>
+
+            <h3>7. Changes to This Privacy Policy</h3>
+            <p>We may update this Privacy Policy from time to time in order to reflect, for example, changes to our practices or for other operational, legal, or regulatory reasons. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+
+            <h3>8. Contact Us</h3>
+            <p>If you have questions or comments about this Privacy Policy, please contact us at:</p>
+            <p>
+                <strong>Tanger Royal Cars</strong><br>
+                Email: <a href="mailto:abdelghani.elyousfi@educa.madrid.org">abdelghani.elyousfi@educa.madrid.org</a><br>
+                Phone: +212999999999
+            </p>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{layout/layout ::footer}"></footer>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Display Current Date Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the current date
+        var today = new Date();
+
+        // Format the date as needed (e.g., "MM/DD/YYYY" or "DD/MM/YYYY")
+        var day = today.getDate();
+        var month = today.getMonth() + 1; // Months are zero-indexed
+        var year = today.getFullYear();
+
+        // Add leading zero to day and month if needed
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+
+        // Create the formatted date string
+        var formattedDate = month + '/' + day + '/' + year; // For "MM/DD/YYYY"
+        // var formattedDate = day + '/' + month + '/' + year; // For "DD/MM/YYYY"
+
+        // Display the date in the designated container
+        document.getElementById('current-date').innerText = formattedDate;
+    });
+</script>
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+</body>
+</html>

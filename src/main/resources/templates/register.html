@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
+    <style>
+        .registration-form {
+            background-color: #fff;
+            padding: 40px;
+            margin: 50px auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+        }
+        .registration-form h2 {
+            color: #FF8000; /* Orange color matching the site theme */
+            margin-bottom: 30px;
+        }
+        .registration-form .form-group {
+            margin-bottom: 20px;
+        }
+        .registration-form .form-control {
+            border-radius: 5px;
+            border: 1px solid #003366; /* Dark blue border */
+        }
+        .registration-form .btn-primary {
+            background-color: #FF8000; /* Orange button */
+            border-color: #FF8000;
+        }
+        .registration-form .btn-primary:hover {
+            background-color: #e57300; /* Darker orange on hover */
+            border-color: #e57300;
+        }
+        .registration-form .row > .col-md-6 {
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        .registration-container {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}">
+</header>
+
+<div class="container-fluid py-5 registration-container">
+    <div class="container pt-5 pb-3">
+        <div class="registration-form">
+            <h2>Create an Account</h2>
+            <br>
+            <form action="/register" method="POST">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="confirm-password">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="national-id">National ID</label>
+                        <input type="text" class="form-control" id="national-id" name="national-id" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phone-number">Phone Number</label>
+                        <input type="text" class="form-control" id="phone-number" name="phone-number" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="address">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" required>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="~{layout/layout ::footer}"></footer>
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+</body>
+</html>

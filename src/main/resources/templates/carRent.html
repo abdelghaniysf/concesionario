@@ -47,16 +47,10 @@
                 <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
                     <div class="navbar-nav ml-auto py-0">
                         <a th:href="@{/index}" class="nav-item nav-link">Home</a>
+                        <a th:href="@{/car-buy}"  class="nav-item nav-link">Car buying</a>
+                        <a th:href="@{/car-rent}"  class="nav-item nav-link">Car renting</a>
                         <a th:href="@{/about}" class="nav-item nav-link ">About</a>
                         <a th:href="@{/service}" class="nav-item nav-link">Service</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Cars</a>
-                            <div class="dropdown-menu rounded-0 m-0">
-                                <a th:href="@{/car}"  class="dropdown-item">Car Listing</a>
-                                <a th:href="@{/detail}"  class="dropdown-item">Car Detail</a>
-                                <a th:href="@{/booking}"  class="dropdown-item">Car Booking</a>
-                            </div>
-                        </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu rounded-0 m-0">
@@ -140,11 +134,11 @@
                                 <span>25K</span>
                             </div>
                         </div>
-                        <a class="btn btn-primary px-3" href="">$99.00/Day</a>
+                        <a class="btn btn-primary px-3" th:href="@{/booking}">$99.00/Day</a>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 mb-2">
-                    <div class="rent-item active mb-4">
+                    <div class="rent-item mb-4">
                         <img class="img-fluid mb-4" src="img/car-rent-2.png" alt="">
                         <h4 class="text-uppercase mb-4">Mercedes Benz R3</h4>
                         <div class="d-flex justify-content-center mb-4">

@@ -26,9 +26,14 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("car")
-    public String getCar(){
-        return "car";
+    @GetMapping("car-buy")
+    public String getCarBuy(){
+        return "carBuy";
+    }
+
+    @GetMapping("car-rent")
+    public String getCarRent(){
+        return "carRent";
     }
 
     @GetMapping("detail")
@@ -49,5 +54,20 @@ public class IndexController {
     @GetMapping("testimonial")
     public String getTestimonial(){
         return "testimonial";
+    }
+
+    @GetMapping("privacy")
+    public String getPrivacy(){
+        return "privacy";
+    }
+
+    @GetMapping("terms")
+    public String getTerms(){
+        return "terms&conditions";
+    }
+
+    @GetMapping("register")
+    public String getRegistration(){
+        return "register";
     }
 }
