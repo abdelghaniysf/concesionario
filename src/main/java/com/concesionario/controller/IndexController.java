@@ -26,26 +26,6 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("car-buy")
-    public String getCarBuy(){
-        return "carBuy";
-    }
-
-    @GetMapping("car-rent")
-    public String getCarRent(){
-        return "carRent";
-    }
-
-    @GetMapping("detail")
-    public String getDetail(){
-        return "detail";
-    }
-
-    @GetMapping("booking")
-    public String getBooking(){
-        return "booking";
-    }
-
     @GetMapping("team")
     public String getTeam(){
         return "team";

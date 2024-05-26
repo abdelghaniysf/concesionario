@@ -1,7 +1,6 @@
 package com.concesionario.entity;
 
-import com.concesionario.entity.enums.TractionType;
-import com.concesionario.entity.enums.TransmissionType;
+import com.concesionario.entity.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,53 +16,65 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "coches")
+@Table(name = "cars")
 public class CarEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1671320768031045626L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codigo_coche")
-    private Integer carCode;
-    @Column(name = "marca_cocheid")
-    private Integer carBrandId;
-    @Column(name = "referencia")
-    private String reference;
-    @Column(name = "precio")
-    private Double price;
-    @Column(name = "anio_modelo")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate modelYear;
-    @Column(name = "color")
-    private String color;
-    @Column(name = "caballos")
-    private Double horsepower;
-    @Column(name = "numero_puertas")
-    private Integer numberDoors;
-    @Column(name = "cilindraje")
-    private Double engineDisplacement;
-    @Column(name = "transmision")
-    @Enumerated(EnumType.STRING)
-    private TransmissionType transmission;
-    @Column(name = "tipo_cumbustible")
-    private String fuelType;
-    @Column(name = "cantidad_asientos")
-    private Integer numberSeat;
-    @Column(name = "traccion")
-    @Enumerated(EnumType.STRING)
-    private TractionType traction;
-    @Column(name = "direccion")
-    private String steering;
-    @Column(name = "categoria")
-    private String category;
-    @Column(name = "ruta_imagen")
-    private String imagePath;
+    @Column(name = "chassis_serial_number")
+    private String chassisSerialNumber;
 
     @ManyToOne
-    @JoinColumn(name = "marca_cocheid",insertable = false,updatable = false)
-    private CarBrandEntity carBrandEntity;
+    @JoinColumn(name = "motor_id", nullable = false)
+    private MotorEntity motor;
 
-    @OneToMany(mappedBy = "carEntity",cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "car_brand_id", nullable = false)
+    private CarBrandEntity carBrand;
+
+    @Column(name = "price")
+    private Double price;
+
+    @Column(name = "model_year")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate modelYear;
+
+    @Column(name = "color")
+    private String color;
+
+    @Column(name = "number_doors")
+    private Integer numberDoors;
+
+    @Column(name = "transmission")
+    @Enumerated(EnumType.STRING)
+    private TransmissionType transmission;
+
+    @Column(name = "weight")
+    private Long weight;
+
+    @Column(name = "number_seats")
+    private Integer numberSeats;
+
+    @Column(name = "traction")
+    @Enumerated(EnumType.STRING)
+    private TractionType traction;
+
+    @Column(name = "steering")
+    @Enumerated(EnumType.STRING)
+    private SteeringType steering;
+
+    @Column(name = "category")
+    @Enumerated(EnumType.STRING)
+    private Category category;
+
+    @Column(name="car_for")
+    @Enumerated(EnumType.STRING)
+    private CarFor carFor;
+
+    @Column(name = "image_path")
+    private String imagePath;
+
+    @OneToMany(mappedBy = "carEntity", cascade = CascadeType.ALL)
     private List<CarPurchaseEntity> carPurchaseEntityList;
 }

@@ -25,7 +25,7 @@ public class CarBrandEntity implements Serializable {
     @Column(name = "descripcion", unique = true)
     private String description;
 
-    @OneToMany(mappedBy = "carBrandEntity", cascade = CascadeType.PERSIST, orphanRemoval = true)
+    @OneToMany(mappedBy = "carBrand", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<CarEntity> carEntities;
 }
 
