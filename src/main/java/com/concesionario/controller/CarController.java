@@ -25,4 +25,9 @@ public class CarController {
     public String getDetail(){
         return "detail";
     }
+
+    @GetMapping("car-register")
+    public String getCarRegister(){
+        return "carRegister";
+    }
 }
