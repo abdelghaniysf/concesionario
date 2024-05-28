@@ -39,122 +39,172 @@
     </style>
 </head>
 <body>
-    <header th:replace="~{layout/layout :: header}">
-    </header>
-    <div class="container-fluid py-5 registration-container">
-        <div class="container pt-5 pb-3">
-            <div class="registration-form">
-                <h2>Register a new Car</h2>
-                <br>
-                <form action="/carRegister" method="POST">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="chassisSerialNumber">Chassis Serial Number:</label>
-                            <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="horsepower">Horsepower:</label>
-                            <input type="number" id="horsepower" name="motor.horsepower" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="torque">Torque:</label>
-                            <input type="number" id="torque" name="motor.torque" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="engineDisplacement">Engine Displacement:</label>
-                            <input type="number" id="engineDisplacement" name="motor.engineDisplacement" class="form-control" step="0.01" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="fuelType">Fuel Type:</label>
-                            <select id="fuelType" name="motor.fuelType" class="form-control" required>
-                                <!-- Options should be populated dynamically from the database -->
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="carBrand">Car Brand:</label>
-                            <select id="carBrand" name="carBrand" class="form-control" required>
-                                <!-- Options should be populated dynamically from the database -->
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="brandDescription">Car Brand Description:</label>
-                            <input type="text" id="brandDescription" name="carBrand.description" class="form-control" required>
+<header th:replace="~{layout/layout :: header}">
+</header>
+<div class="container-fluid py-5 registration-container">
+    <div class="container pt-5 pb-3">
+        <div class="registration-form">
+            <h2>Register a new Car</h2>
+            <br>
+            <form action="/carRegister" method="POST">
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="chassisSerialNumber">Chassis Serial Number:</label>
+                        <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control" required minlength="17">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="horsepower">Horsepower:</label>
+                        <input type="number" id="horsepower" name="motor.horsepower" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="torque">Torque:</label>
+                        <input type="number" id="torque" name="motor.torque" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="engineDisplacement">Engine Displacement:</label>
+                        <input type="number" id="engineDisplacement" name="motor.engineDisplacement" class="form-control" step="0.01" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="engineDescription">Engine Description:</label>
+                        <input type="text" id="engineDescription" name="motor.engineDescription" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="engineVolume">Engine Volume:</label>
+                        <input type="number" id="engineVolume" name="motor.engineVolume" class="form-control" step="0.01" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="fuelType">Fuel Type:</label>
+                        <select id="fuelType" name="motor.fuelType" class="form-control" required>
+                            <option th:each="fuelType : ${fuelTypes}" th:value="${fuelType}" th:text="${fuelType}">Fuel Type</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="carBrand">Car Brand:</label>
+                        <select id="carBrand" name="carBrand" class="form-control" required>
+                            <option th:each="carBrand : ${carBrands}" th:value="${carBrand}" th:text="${carBrand}">Car Brand</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="price">Price:</label>
+                        <input type="number" id="price" name="price" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="km">Kilometers:</label>
+                        <input type="number" id="km" name="km" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="description">Car Description:</label>
+                        <input type="text" id="description" name="description" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="model">Model:</label>
+                        <input type="text" id="model" name="model" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="modelYear">Model Year:</label>
+                        <input type="date" id="modelYear" name="modelYear" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="color">Color:</label>
+                        <input type="text" id="color" name="color" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="numberDoors">Number of Doors:</label>
+                        <input type="number" id="numberDoors" name="numberDoors" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="transmission">Transmission:</label>
+                        <select id="transmission" name="transmission" class="form-control" required>
+                            <option th:each="transmission : ${transmissionTypes}" th:value="${transmission}" th:text="${transmission}">Transmission</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="weight">Weight:</label>
+                        <input type="number" id="weight" name="weight" class="form-control" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="numberSeats">Number of Seats:</label>
+                        <input type="number" id="numberSeats" name="numberSeats" class="form-control" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="traction">Traction:</label>
+                        <select id="traction" name="traction" class="form-control" required>
+                            <option th:each="traction : ${tractionTypes}" th:value="${traction}" th:text="${traction}">Traction</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="steering">Steering:</label>
+                        <select id="steering" name="steering" class="form-control" required>
+                            <option th:each="steering : ${steeringTypes}" th:value="${steering}" th:text="${steering}">Steering</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="category">Category:</label>
+                        <select id="category" name="category" class="form-control" required>
+                            <option th:each="category : ${categories}" th:value="${category}" th:text="${category}">Category</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="carFor">Car For:</label>
+                        <select id="carFor" name="carFor" class="form-control" required>
+                            <option th:each="carFor : ${carFors}" th:value="${carFor}" th:text="${carFor}">Car For</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6 mb-4">
+                        <label for="imagePath">Image Path:</label>
+                        <input type="text" id="imagePath" name="imagePath" class="form-control">
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">Register Car</button>
+                            </div>
                         </div>
                     </div>
-                        <div class="form-group col-md-6">
-                            <label for="price">Price:</label>
-                            <input type="number" id="price" name="price" class="form-control" step="0.01" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="modelYear">Model Year:</label>
-                            <input type="date" id="modelYear" name="modelYear" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="color">Color:</label>
-                            <input type="text" id="color" name="color" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="numberDoors">Number of Doors:</label>
-                            <input type="number" id="numberDoors" name="numberDoors" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="transmission">Transmission:</label>
-                            <select id="transmission" name="transmission" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="weight">Weight:</label>
-                            <input type="number" id="weight" name="weight" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="numberSeats">Number of Seats:</label>
-                            <input type="number" id="numberSeats" name="numberSeats" class="form-control" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="traction">Traction:</label>
-                            <select id="traction" name="traction" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="steering">Steering:</label>
-                            <select id="steering" name="steering" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="category">Category:</label>
-                            <select id="category" name="category" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="carFor">Car For:</label>
-                            <select id="carFor" name="carFor" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="imagePath">Image Path:</label>
-                            <input type="text" id="imagePath" name="imagePath" class="form-control">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-submit btn-primary">Register Car</button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
-    <footer th:replace="~{layout/layout ::footer}"></footer>
-    <!-- Footer End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+</div>
+<footer th:replace="~{layout/layout ::footer}"></footer>
+<!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
 </body>
 </html>

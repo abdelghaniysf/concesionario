@@ -25,8 +25,14 @@ public class MotorEntity {
     @Column(name = "torque")
     private Long torque;
 
-    @Column(name = "engine_displacement")
-    private Double engineDisplacement;
+    @Column(name = "engine_cc")
+    private Double engineCc;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "engine_volume")
+    private Double engineVolume;
 
     @Column(name = "fuel_type")
     @Enumerated(EnumType.STRING)

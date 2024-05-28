@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "cars")
+@Table(name = "car")
 public class CarEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1671320768031045626L;
@@ -29,12 +29,21 @@ public class CarEntity implements Serializable {
     @JoinColumn(name = "motor_id", nullable = false)
     private MotorEntity motor;
 
-    @ManyToOne
-    @JoinColumn(name = "car_brand_id", nullable = false)
-    private CarBrandEntity carBrand;
+    @Column(name = "car_brand", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CarBrand carBrand;
 
     @Column(name = "price")
     private Double price;
+
+    @Column(name = "km")
+    private Long km;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "model")
+    private String model;
 
     @Column(name = "model_year")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
@@ -68,7 +77,7 @@ public class CarEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @Column(name="car_for")
+    @Column(name = "car_for")
     @Enumerated(EnumType.STRING)
     private CarFor carFor;
 

@@ -15,25 +15,25 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "compras")
+@Table(name = "purchase")
 public class PurchaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = -3977446857948765974L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numero_factura")
+    @Column(name = "invoice_number")
     private Integer invoiceNumber;
-    @Column(name = "cliente_dni")
+    @Column(name = "customer_dni")
     private String customerDni;
-    @Column(name = "fecha")
+    @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
     private Double total;
-    @Column(name = "medio_pago")
+    @Column(name = "payment_method")
     private String paymentMethod;
 
     @ManyToOne
-    @JoinColumn(name ="cliente_dni",insertable = false,updatable = false)
+    @JoinColumn(name ="customer_id",insertable = false,updatable = false)
     private CustomerEntity customerEntity;
 
     @OneToMany(mappedBy = "purchaseEntity",cascade = CascadeType.ALL)

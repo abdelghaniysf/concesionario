@@ -17,8 +17,8 @@ public class CarPurchasePK implements Serializable {
     @Serial
     private static final long serialVersionUID = -6096095155740053978L;
 
-    @Column(name = "compra_numero_factura")
+    @Column(name = "purchase_invoice_number")
     private Integer purchaseInvoiceNumber;
-    @Column(name = "coches_codigo_coche")
+    @Column(name = "car_code")
     private Integer carCode;
 }

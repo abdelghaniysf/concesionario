@@ -17,24 +17,29 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "clientes")
+@Table(name = "customer")
 public class CustomerEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = -6196622178756080206L;
 
     @Id
-    private String dni;
-    @Column(name = "nombre")
+    private String id;
+    @Column(name = "username")
+    private String username;
+    @Column(name = "firstname")
     private String firstname;
-    @Column(name = "apellido")
+    @Column(name = "lastname")
     private String lastname;
+    @Column(name = "email")
     private String email;
-    @Column(name = "numero_telefono")
+    @Column(name="address")
+    private String address;
+    @Column(name="date_of_birth")
+    private String dateOfBirth;
+    @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "contrasenia")
+    @Column(name = "password")
     private String password;
-    @Column(name = "activo")
-    private Integer active;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL)

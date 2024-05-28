@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Entity
-@Table(name = "coches_compra")
+@Table(name = "car_purchase")
 public class CarPurchaseEntity implements Serializable {
 
     @Serial
@@ -20,14 +20,14 @@ public class CarPurchaseEntity implements Serializable {
 
     @Id
     private CarPurchasePK id;
-    @Column(name = "cantidad")
+    @Column(name = "quantity")
     private Integer quantity;
     private Double total;
     @ManyToOne
     @MapsId(value = "purchaseInvoiceNumber")
-    @JoinColumn(name = "compra_numero_factura",insertable = false, updatable = false)
+    @JoinColumn(name = "purchase_invoice_number",insertable = false, updatable = false)
     private PurchaseEntity purchaseEntity;
     @ManyToOne
-    @JoinColumn(name = "coches_codigo_coche",insertable = false, updatable = false)
+    @JoinColumn(name = "car_code",insertable = false, updatable = false)
     private CarEntity carEntity;
 }
