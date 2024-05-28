@@ -36,6 +36,19 @@
         .registration-container {
             margin-top: 50px;
         }
+        .login-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .login-link a {
+            color: #FF8000; /* Orange color matching the site theme */
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            color: #e57300; /* Darker orange on hover */
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +114,9 @@
                 <br>
                 <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>
+            <div class="login-link mt-2">
+                <a th:href="@{/login}">Already have an account? Sign in here</a>
+            </div>
         </div>
     </div>
 </div>
