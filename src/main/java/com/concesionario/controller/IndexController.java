@@ -51,4 +51,8 @@ public class IndexController {
         return "register";
     }
 
+    @GetMapping("login")
+    public String getLogin(){
+        return "login";
+    }
 }
