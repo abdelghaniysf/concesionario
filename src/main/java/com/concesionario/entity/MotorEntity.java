@@ -26,7 +26,7 @@ public class MotorEntity {
     private Long torque;
 
     @Column(name = "engine_cc")
-    private Double engineCc;
+    private Long engineCc;
 
     @Column(name = "description")
     private String description;

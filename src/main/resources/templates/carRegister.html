@@ -46,7 +46,7 @@
         <div class="registration-form">
             <h2>Register a new Car</h2>
             <br>
-            <form action="/carRegister" method="POST">
+            <form th:action="@{/carRegister}" th:object="${motor}" method="POST">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="chassisSerialNumber">Chassis Serial Number:</label>
