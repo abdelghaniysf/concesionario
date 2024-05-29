@@ -3,14 +3,11 @@ package com.concesionario.controller;
 import com.concesionario.entity.CarEntity;
 import com.concesionario.entity.MotorEntity;
 import com.concesionario.entity.enums.*;
-import com.concesionario.repository.CarRepository;
-import com.concesionario.repository.MotorRepository;
-import com.concesionario.service.CarService;
-import com.concesionario.service.MotorService;
+import com.concesionario.service.impl.CarService;
+import com.concesionario.service.impl.MotorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -56,21 +53,9 @@ public class CarController {
         model.addAttribute("car", new CarEntity());
         return "carRegister";
     }
-    @PostMapping("/carRegister")
-    public String registerCar(@ModelAttribute("car") CarEntity car, @ModelAttribute("motor") MotorEntity motor, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "registerCar";
-        }
-
-        // Save motor first
-        MotorEntity savedMotor = motorService.save(motor);
-
-        // Set motor to car
-        car.setMotor(savedMotor);
-
-        // Save car
+    @PostMapping("/car-register")
+    public String registerCar( @ModelAttribute CarEntity car, Model model) {
         carService.save(car);
-
-        return "redirect:/carRegister?success";
+        return "redirect:/";
     }
 }

@@ -9,7 +9,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
-
+@ToString
 @Builder
 @Getter
 @Setter
@@ -25,8 +25,8 @@ public class CarEntity implements Serializable {
     @Column(name = "chassis_serial_number")
     private String chassisSerialNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "motor_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "motor_id")
     private MotorEntity motor;
 
     @Column(name = "car_brand", nullable = false)
@@ -83,7 +83,4 @@ public class CarEntity implements Serializable {
 
     @Column(name = "image_path")
     private String imagePath;
-
-    @OneToMany(mappedBy = "carEntity", cascade = CascadeType.ALL)
-    private List<CarPurchaseEntity> carPurchaseEntityList;
 }

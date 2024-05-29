@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-
+@ToString
 @Builder
 @Getter
 @Setter
@@ -26,7 +26,7 @@ public class MotorEntity {
     private Long torque;
 
     @Column(name = "engine_cc")
-    private Long engineCc;
+    private double engineCc;
 
     @Column(name = "description")
     private String description;
@@ -37,7 +37,4 @@ public class MotorEntity {
     @Column(name = "fuel_type")
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
-
-    @OneToMany(mappedBy = "motor", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private List<CarEntity> carEntities;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/layout :: head}">
     <style>
         .registration-form {
@@ -46,11 +46,11 @@
         <div class="registration-form">
             <h2>Register a new Car</h2>
             <br>
-            <form th:action="@{/carRegister}" th:object="${motor}" method="POST">
+            <form th:action="@{/car-register}" th:object="${car}" method="POST">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="chassisSerialNumber">Chassis Serial Number:</label>
-                        <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control" required minlength="17">
+                        <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control" th:field="*{chassisSerialNumber}" required minlength="17">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="category">Category:</label>
@@ -68,65 +68,65 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label for="engineDisplacement">Engine Displacement:</label>
-                        <input type="number" id="engineDisplacement" name="motor.engineDisplacement" class="form-control" step="0.01" required>
+                        <input type="number" id="engineDisplacement" name="engineDisplacement" class="form-control" step="0.01" th:field="*{motor.engineCc}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="engineDescription">Engine Description:</label>
-                        <input type="text" id="engineDescription" name="motor.engineDescription" class="form-control" required>
+                        <input type="text" id="engineDescription" name="engineDescription" class="form-control" th:field="*{motor.description}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="engineVolume">Engine Volume:</label>
-                        <input type="number" id="engineVolume" name="motor.engineVolume" class="form-control" step="0.01" required>
+                        <input type="number" id="engineVolume" name="motor.engineVolume" class="form-control" step="0.01" th:field="*{motor.engineVolume}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="fuelType">Fuel Type:</label>
-                        <select id="fuelType" name="motor.fuelType" class="form-control" required>
-                            <option th:each="fuelType : ${fuelTypes}" th:value="${fuelType}" th:text="${fuelType.fuelTypeEnum}">Fuel Type</option>
+                        <select id="fuelType" name="fuelType" class="form-control" th:field="*{motor.fuelType}"  required>
+                            <option th:each="fuelType : ${fuelTypes}" th:value="${fuelType}" th:text="${fuelType.fuelTypeEnum}" >Fuel Type</option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="torque">Torque:</label>
-                        <input type="number" id="torque" name="motor.torque" class="form-control" required>
+                        <input type="number" id="torque" name="motor.torque" class="form-control" th:field="*{motor.torque}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="horsepower">Horsepower:</label>
-                        <input type="number" id="horsepower" name="motor.horsepower" class="form-control" required>
+                        <input type="number" id="horsepower" name="motor.horsepower" class="form-control" th:field="*{motor.horsepower}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="km">Kilometers:</label>
-                        <input type="number" id="km" name="km" class="form-control" required>
+                        <input type="number" id="km" name="km" class="form-control" th:field="*{km}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="description">Car Description:</label>
-                        <input type="text" id="description" name="description" class="form-control" required>
+                        <input type="text" id="description" name="description" class="form-control" th:field="*{description}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="model">Model:</label>
-                        <input type="text" id="model" name="model" class="form-control" required>
+                        <input type="text" id="model" name="model" class="form-control" th:field="*{model}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="modelYear">Model Year:</label>
-                        <input type="date" id="modelYear" name="modelYear" class="form-control" required>
+                        <input type="date" id="modelYear" name="modelYear" class="form-control" th:field="*{modelYear}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="color">Color:</label>
-                        <input type="text" id="color" name="color" class="form-control" required>
+                        <input type="text" id="color" name="color" class="form-control" th:field="*{color}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="numberDoors">Number of Doors:</label>
-                        <input type="number" id="numberDoors" name="numberDoors" class="form-control" required>
+                        <input type="number" id="numberDoors" name="numberDoors" class="form-control" th:field="*{numberDoors}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="transmission">Transmission:</label>
@@ -138,11 +138,11 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="weight">Weight:</label>
-                        <input type="number" id="weight" name="weight" class="form-control" required>
+                        <input type="number" id="weight" name="weight" class="form-control" th:field="*{weight}"  required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="numberSeats">Number of Seats:</label>
-                        <input type="number" id="numberSeats" name="numberSeats" class="form-control" required>
+                        <input type="number" id="numberSeats" name="numberSeats" class="form-control" th:field="*{numberSeats}" required>
                     </div>
                 </div>
                 <div class="row">
@@ -162,7 +162,7 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="price">Price:</label>
-                        <input type="number" id="price" name="price" class="form-control" step="0.01" required>
+                        <input type="number" id="price" name="price" class="form-control" step="0.01" th:field="*{price}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="carFor">Car For:</label>

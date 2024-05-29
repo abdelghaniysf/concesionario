@@ -1,4 +1,4 @@
-package com.concesionario.service;
+package com.concesionario.service.impl;
 
 import com.concesionario.entity.MotorEntity;
 import com.concesionario.repository.MotorRepository;

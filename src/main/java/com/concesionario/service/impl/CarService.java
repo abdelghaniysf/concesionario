@@ -1,4 +1,4 @@
-package com.concesionario.service;
+package com.concesionario.service.impl;
 
 import com.concesionario.entity.CarEntity;
 import com.concesionario.repository.CarRepository;
