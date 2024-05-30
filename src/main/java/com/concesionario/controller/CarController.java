@@ -34,11 +34,11 @@ public class CarController {
         return "booking";
     }
 
-    @GetMapping("car-buy")
+    @GetMapping("car-sale")
     public String getCarBuyPage(Model model) {
         List<CarEntity> carsForSale = carService.findCarsForSale();
         model.addAttribute("cars", carsForSale);
-        return "carBuy";
+        return "carSale";
     }
 
     @GetMapping("detail")
