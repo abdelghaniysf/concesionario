@@ -1,6 +1,7 @@
 package com.concesionario.service.impl;
 
 import com.concesionario.entity.CarEntity;
+import com.concesionario.entity.enums.CarFor;
 import com.concesionario.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +17,12 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    public List<CarEntity> findAll() {
-        return carRepository.findAll();
+    public List<CarEntity> findCarsForSale() {
+        return carRepository.findByCarFor(CarFor.SALE);
+    }
+
+    public List<CarEntity> findCarsForRent() {
+        return carRepository.findByCarFor(CarFor.RENT);
     }
 }
 
