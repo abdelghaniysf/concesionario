@@ -2,9 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/layout :: head}">
 </head>
-<body>
-<header th:replace="~{layout/layout :: header}">
-</header>
+<body class="body-login">
+<video autoplay muted loop id="bg-video">
+    <source src="https://videos.pexels.com/video-files/5309351/5309351-hd_1280_720_25fps.mp4" type="video/mp4">
+    Tu navegador no soporta la etiqueta de video.
+</video>
 <div class="login-box">
     <h2>Login</h2>
     <form>
@@ -16,6 +18,9 @@
             <input type="password" name="" required="">
             <label>Password</label>
         </div>
+        <div class="register-link mt-2">
+            <a th:href="@{/register.html}">Already have an account? Sign in here</a>
+        </div>
         <a href="#">
             <span></span>
             <span></span>
@@ -25,33 +30,7 @@
         </a>
     </form>
 </div>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer th:replace="~{layout/layout ::footer}"></footer>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <!-- Back to Top -->
 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 

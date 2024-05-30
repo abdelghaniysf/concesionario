@@ -128,7 +128,7 @@
                                 <span th:text="${car.km}">Mileage</span>
                             </div>
                         </div>
-                        <a class="btn btn-primary px-3" th:href="@{'/detail/' + ${car.chassisSerialNumber}}" th:text="'$' + ${car.price} + '/Day'">Price/Day</a>
+                        <a class="btn btn-primary px-3" th:href="@{'/detail/' + ${car.chassisSerialNumber}}" th:text="'$' + ${car.price}"></a>
                     </div>
                 </div>
             </div>
