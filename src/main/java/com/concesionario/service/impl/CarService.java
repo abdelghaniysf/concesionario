@@ -5,6 +5,8 @@ import com.concesionario.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CarService {
     @Autowired
@@ -12,6 +14,10 @@ public class CarService {
 
     public CarEntity save(CarEntity car) {
         return carRepository.save(car);
+    }
+
+    public List<CarEntity> findAll() {
+        return carRepository.findAll();
     }
 }
 

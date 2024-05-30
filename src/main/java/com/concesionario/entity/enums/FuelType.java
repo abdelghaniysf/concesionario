@@ -6,6 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum FuelType {
-    GASOLINE("Gasoline"),DIESEL("Diesel"),HYBRID("Hybrid");
+    PETROL("Petrol"),
+    DIESEL("Diesel"),
+    HYBRID("Hybrid");
+
     private final String fuelTypeEnum;
 }

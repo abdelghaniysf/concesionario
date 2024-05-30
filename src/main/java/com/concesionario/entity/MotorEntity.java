@@ -4,7 +4,6 @@ import com.concesionario.entity.enums.FuelType;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
 @ToString
 @Builder
 @Getter

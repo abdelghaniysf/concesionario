@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @Controller
 public class CarController {
@@ -31,7 +33,9 @@ public class CarController {
     }
 
     @GetMapping("car-buy")
-    public String getCarBuy(){
+    public String getCarBuy(Model model){
+        List<CarEntity> cars = carService.findAll();
+        model.addAttribute("cars", cars);
         return "carBuy";
     }
 
