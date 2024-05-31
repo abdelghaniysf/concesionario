@@ -1,290 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>TANGER ROYAL CARS - Car dealership</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <!-- Favicon -->
-    <link href="/img/favicon.png" rel="icon">
-
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    @import url('https://fonts.googleapis.com/css?family=Roboto:300');
-    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
-    * {
-        box-sizing: border-box;
-    }
-
-    body{
-        font-family: 'Roboto', sans-serif;
-        font-weight: 300;
-        background: #1c1e32;
-        color: red;
-        overflow: hidden;
-        margin: 0;
-    }
-    h1, h2, h3, h4, h5, h6{
-        font-weight: 300;
-    }
-    #wrapper{
-        display: flex;
-        flex-direction: row;
-
-    }
-    #left{
-        flex:1;
-        flex-direction: column;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 80vh;
-    }
-    #right{
-        flex:1;
-
-    }
-    /* Sign In */
-    #signin{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 80%;
-        padding-bottom: 0.1rem;
-    }
-    #signin form{
-        width: 80%;
-        padding-bottom: 1rem;
-    }
-
-    #signin .logo{
-        margin-bottom: 8vh;
-    }
-    #signin .logo img{
-        width: 300px;
-
-    }
-    #signin label{
-
-        font-size: 0.9rem;
-        line-height: 2rem;
-        font-weight: 500;
-    }
-    #signin .text-input{
-        margin-bottom: 1.3rem;
-        width: 100%;
-        border-radius: 2px;
-        background: #ffffff;
-        border: 1px solid #555555;
-        color: #cccccc;
-        padding: 0.5rem 1rem;
-        line-height: 1.3rem;
-    }
-    #signin .primary-btn{
-        width: 100%;
-    }
-
-    #signin .secondary-btn,
-    .or,
-    .links{
-        width: 60%;
-    }
-
-    #signin .links a{
-        display: block;
-        color: #ffffff;
-        text-decoration: none;
-        margin-bottom: 1rem;
-        text-align: center;
-        font-size: 0.9rem;
-    }
-
-    #signin .or{
-        display: flex;
-        flex-direction: row;
-        margin-bottom: 1.2rem;
-        align-items: center;
-    }
-
-    #signin .or .bar{
-        flex: auto;
-        border: none;
-        height: 1px;
-        background: #aaaaaa;
-    }
-
-    #signin .or span{
-        color: #ccc;
-        padding: 0 0.9rem;
-    }
-    /* Showcase */
-    #showcase{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        height: 100vh;
-        background: url('https://hips.hearstapps.com/hmg-prod/images/ferrari-sf90-stradale-by-novitec-2022-1-1657022038.jpg?crop=0.75xw:1xh;center,top&resize=1200:*') no-repeat center center / cover;
-
-    }
-    #showcase .showcase-text{
-        font-size: 3rem;
-        width: 100%;
-        color: #fff;
-        /* margin-bottom: 25rem; */
-        font-family: 'Oswald', sans-serif;
-    }
-    #showcase .showcase-text:hover{
-        color: #F77D0AFF;
-        cursor: pointer;
-    }
-    #showcase .secondary-btn{
-        width: 60%;
-        margin: auto;
-        margin-bottom: 20rem;
-    }
-
-    /* footer */
-    #main-footer{
-        color: #ccc;
-        text-align: center;
-        font-size: 0.8rem;
-        max-width: 80%;
-        padding-top: 4rem;
-    }
-    #main-footer a {
-        color: #ccc;
-        text-decoration: none;
-    }
-
-    /* Button */
-    .primary-btn{
-        padding: 0.7rem 1rem;
-        height: 2.7rem;
-        display: block;
-        border: 0;
-        border-radius: 2px;
-        font-weight: 600;
-        background: #1c1e32;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.5s;
-    }
-
-    .primary-btn:hover{
-        background-color: red;
-    }
-
-    .secondary-btn{
-        padding: 0.7rem 1rem;
-        height: 2.7rem;
-        display: block;
-        border: 1px solid #f4f4f4;
-        border-radius: 2px;
-        font-weight: 500;
-        background: none;
-        color: #fff;
-        text-decoration: none;
-        cursor: pointer;
-        text-align: center;
-        transition: all 0.5s;
-
-    }
-
-    .secondary-btn:hover{
-        border-color: red;
-        color: #fff239;
-    }
-
-    /* Media Queries */
-    @media(min-width: 1200px){
-        #left{
-            flex: 4;
-        }
-        #right{
-            flex: 6;
-        }
-    }
-    @media(max-width: 768px){
-        body{
-            overflow: auto;
-        }
-
-        #right{
-            display: none;
-        }
-        #left{
-            justify-content: start;
-            margin-top: 4vh;
-        }
-        #singin .logo{
-            margin-bottom: 2vh;
-        }
-        #sigin .text-input{
-            margin-bottom: 0.7rem;
-        }
-        #main-footer{
-            padding-top: 1rem;
-        }
-
-    }
-    </style>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{layout/layout :: head}">
 </head>
 <body>
-<div id="wrapper">
-    <div id="left">
-        <div id="signin">
-            <div id="logo">
-                <img src="https://i.postimg.cc/2yNgyPBv/graycars.png" alt="Gray">
-            </div>
-            <form>
-                <div>
-                    <label>Email</label>
-                    <input type="text" class="text-input" placeholder="Enter your Email here" />
+<header>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body pr-3" th:href="@{/contact}"><i class="fa fa-phone-alt mr-2"></i>+21299999999</a>
+                    <span class="text-body">|</span>
+                    <a class="text-body px-3" th:href="@{/contact}"><i class="fa fa-envelope mr-2"></i>abdelghani.elyousfi@educa.madrid.org</a>
                 </div>
-                <div>
-                    <label>Password</label>
-                    <input type="password" class="text-input" placeholder="Enter your Password here" />
+            </div>
+            <div class="col-md-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body px-3" href="https://www.facebook.com/">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://x.com/">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://es.linkedin.com/">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://www.instagram.com/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-body pl-3" href="https://www.youtube.com/">
+                        <i class="fab fa-youtube"></i>
+                    </a>
                 </div>
-                <button type="submit" class="primary-btn">Sign In</button>
-            </form>
-            <div class="links">
-                <a href="#">Forgot Password</a>
             </div>
-            <div class="or">
-                <hr class="bar" />
-                <span>OR</span>
-                <hr class="bar" />
-            </div>
-            <a href="#" class="secondary-btn">Create an account</a>
         </div>
     </div>
-    <div id="right">
-        <div id="showcase">
-            <div class="showcase-content">
-                <h1 class="showcase-text">
-                    Tanger Royal Cars
-                </h1>
-                <a href="#" class="secondary-btn">Vorsprung durch Technik</a>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="position-relative px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+                <a th:href="@{/index}" class="navbar-brand">
+                    <h1 class="text-uppercase text-primary mb-1">Tanger Royal Cars</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a th:href="@{/index}" class="nav-item nav-link">Home</a>
+                        <a th:href="@{/car-sale}" class="nav-item nav-link">Car buying</a>
+                        <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
+                        <a th:href="@{/about}" class="nav-item nav-link">About</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+</header>
+
+<div class="container-fluid py-5 registration-container col-sm-4">
+    <div class="container p-5 bg-secondary" style="border: 3px solid #E57300FF">
+        <div class="registration-form">
+            <div class="container text-center">
+            <img src="/img/favicon.png" class="img-fluid mb-3" alt="logo">
+            </div>
+            <form action="/login" method="POST">
+                <div class="form-group text-white" >
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="username" name="username" required>
+                </div>
+                <div class="form-group text-white">
+                    <label for="password" >Password</label>
+                    <input type="password" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="password" name="password" required>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-2">Login</button>
+                </div>
+            </form>
+            <div class="login-link text-center">
+                <a th:href="@{/register}">Create a new account</a>
             </div>
         </div>
-
     </div>
 </div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
 </body>
 </html>

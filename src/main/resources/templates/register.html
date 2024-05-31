@@ -1,129 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{layout/layout :: head}">
-    <style>
-        .registration-form {
-            background-color: #fff;
-            padding: 40px;
-            margin: 50px auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-        }
-        .registration-form h2 {
-            color: #FF8000; /* Orange color matching the site theme */
-            margin-bottom: 30px;
-        }
-        .registration-form .form-group {
-            margin-bottom: 20px;
-        }
-        .registration-form .form-control {
-            border-radius: 5px;
-            border: 1px solid #003366; /* Dark blue border */
-        }
-        .registration-form .btn-primary {
-            background-color: #FF8000; /* Orange button */
-            border-color: #FF8000;
-        }
-        .registration-form .btn-primary:hover {
-            background-color: #e57300; /* Darker orange on hover */
-            border-color: #e57300;
-        }
-        .registration-form .row > .col-md-6 {
-            padding-right: 15px;
-            padding-left: 15px;
-        }
-        .registration-container {
-            margin-top: 50px;
-        }
-        .login-link {
-            display: block;
-            margin-top: 20px;
-            text-align: center;
-        }
-        .login-link a {
-            color: #FF8000; /* Orange color matching the site theme */
-            text-decoration: none;
-        }
-        .login-link a:hover {
-            color: #e57300; /* Darker orange on hover */
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-<header th:replace="~{layout/layout :: header}">
+<header>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
+        <div class="row">
+            <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body pr-3" th:href="@{/contact}"><i class="fa fa-phone-alt mr-2"></i>+21299999999</a>
+                    <span class="text-body">|</span>
+                    <a class="text-body px-3" th:href="@{/contact}"><i class="fa fa-envelope mr-2"></i>abdelghani.elyousfi@educa.madrid.org</a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-lg-right">
+                <div class="d-inline-flex align-items-center">
+                    <a class="text-body px-3" href="https://www.facebook.com/">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://x.com/">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://es.linkedin.com/">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a class="text-body px-3" href="https://www.instagram.com/">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a class="text-body pl-3" href="https://www.youtube.com/">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="position-relative px-lg-5" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-secondary navbar-dark py-3 py-lg-0 pl-3 pl-lg-5">
+                <a th:href="@{/index}" class="navbar-brand">
+                    <h1 class="text-uppercase text-primary mb-1">Tanger Royal Cars</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between px-3" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a th:href="@{/index}" class="nav-item nav-link">Home</a>
+                        <a th:href="@{/car-sale}" class="nav-item nav-link">Car buying</a>
+                        <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
+                        <a th:href="@{/about}" class="nav-item nav-link">About</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
 </header>
 
 <div class="container-fluid py-5 registration-container">
-    <div class="container p-5" style="border: 3px solid #E57300FF">
+    <div class="container p-5 bg-secondary" style="border: 3px solid #E57300FF">
         <div class="registration-form">
-            <h2>Create an Account</h2>
+            <div class="container text-center"><h2 class="text-primary">Create an Account</h2></div>
             <br>
             <form action="/register" method="POST">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="firstname">First Name</label>
-                        <input type="text" class="form-control" id="firstname" name="firstname" required>
+                        <label for="firstname" class="text-white">First Name</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="firstname" name="firstname" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="lastname">Last Name</label>
-                        <input type="text" class="form-control" id="lastname" name="lastname" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <label for="lastname" class="text-white">Last Name</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="lastname" name="lastname" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
+                        <label for="username" class="text-white">Username</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="username" name="username" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="confirm-password">Confirm Password</label>
-                        <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-6">
-                        <label for="national-id">National ID</label>
-                        <input type="text" class="form-control" id="national-id" name="national-id" required>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label for="phone-number">Phone Number</label>
-                        <input type="text" class="form-control" id="phone-number" name="phone-number" required>
+                        <label for="email" class="text-white">Email</label>
+                        <input type="email" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="email" name="email" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" class="form-control" id="dob" name="dob" required>
+                        <label for="password" class="text-white">Password</label>
+                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="password" name="password" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" required>
+                        <label for="confirm-password" class="text-white">Confirm Password</label>
+                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="confirm-password" name="confirm-password" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="national-id" class="text-white">National ID</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="national-id" name="national-id" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="phone-number" class="text-white">Phone Number</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="phone-number" name="phone-number" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-6">
+                        <label for="dob" class="text-white">Date of Birth</label>
+                        <input type="date" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="address" class="text-white">Address</label>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="address" name="address" required>
                     </div>
                 </div>
                 <br>
-                <button type="submit" class="btn btn-primary btn-block">Register</button>
+                <div class="container text-center"><button type="submit" class="btn btn-primary btn-lg">Register</button></div>
             </form>
-            <div class="login-link mt-2">
+            <div class="login-link mt-2 text-center">
                 <a th:href="@{/login}">Already have an account? Sign in here</a>
             </div>
         </div>
     </div>
 </div>
-
-<footer th:replace="~{layout/layout ::footer}"></footer>
-<!-- Back to Top -->
-<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
