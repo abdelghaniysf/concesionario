@@ -45,14 +45,4 @@ public class IndexController {
     public String getTerms(){
         return "terms&conditions";
     }
-
-    @GetMapping("register")
-    public String getRegistration(){
-        return "register";
-    }
-
-    @GetMapping("login")
-    public String getLogin(){
-        return "login";
-    }
 }

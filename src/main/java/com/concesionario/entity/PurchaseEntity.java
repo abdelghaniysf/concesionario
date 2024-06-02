@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-
 import java.util.Date;
 import java.util.List;
 
@@ -19,23 +18,31 @@ import java.util.List;
 public class PurchaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = -3977446857948765974L;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private String userId;
+
     @Column(name = "invoice_number")
     private Integer invoiceNumber;
-    @Column(name = "customer_dni")
+
+    @Column(name = "user_dni")
     private String customerDni;
+
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date date;
+
     private Double total;
+
     @Column(name = "payment_method")
     private String paymentMethod;
 
     @ManyToOne
-    @JoinColumn(name ="customer_id",insertable = false,updatable = false)
-    private CustomerEntity customerEntity;
+    @MapsId
+    @JoinColumn(name = "user_id")
+    private UserEntity userEntity;
 
-    @OneToMany(mappedBy = "purchaseEntity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "purchaseEntity", cascade = CascadeType.ALL)
     private List<CarPurchaseEntity> carPurchaseEntityList;
 }

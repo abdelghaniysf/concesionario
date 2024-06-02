@@ -65,21 +65,21 @@
         <div class="registration-form">
             <div class="container text-center"><h2 class="text-primary">Create an Account</h2></div>
             <br>
-            <form action="/register" method="POST">
+            <form th:action="@{/register}" method="POST">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="firstname" class="text-white">First Name</label>
-                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="firstname" name="firstname" required>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="firstname" name="firstname" required pattern="[A-Za-z\s]{1,}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="lastname" class="text-white">Last Name</label>
-                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="lastname" name="lastname" required>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="lastname" name="lastname" required pattern="[A-Za-z\s]{1,}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="username" class="text-white">Username</label>
-                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="username" name="username" required>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="username" name="username" required pattern="[A-Za-z0-9]{4,}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="email" class="text-white">Email</label>
@@ -89,21 +89,21 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="password" class="text-white">Password</label>
-                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="password" name="password" required>
+                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="password" name="password" required pattern=".{8,}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="confirm-password" class="text-white">Confirm Password</label>
-                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="confirm-password" name="confirm-password" required>
+                        <input type="password" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="confirm-password" name="confirm-password" required pattern=".{8,}">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="national-id" class="text-white">National ID</label>
-                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="national-id" name="national-id" required>
+                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="national-id" name="national-id" required pattern="[A-Za-z0-9]{6,}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="phone-number" class="text-white">Phone Number</label>
-                        <input type="text" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="phone-number" name="phone-number" required>
+                        <input type="tel" class="form-control" style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="phone-number" name="phone-number" required pattern="\+?[0-9]{10,}">
                     </div>
                 </div>
                 <div class="row">
@@ -135,7 +135,35 @@
 <script src="/lib/tempusdominus/js/moment.min.js"></script>
 <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>
+<script>
+    function validatePassword(event) {
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirm-password").value;
+        if (password !== confirmPassword) {
+            // Reemplaza alert() con SweetAlert2
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Las contraseñas no coinciden.',
+                confirmButtonText: 'OK'
+            });
+            console.log("Password:", password, "Confirm Password:", confirmPassword);
+            event.preventDefault();  // Evita que el formulario se envíe
+        }
+    }
+
+    // Verifica que el DOM está completamente cargado antes de agregar el evento
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', validatePassword);
+        } else {
+            console.log("Formulario no encontrado");
+        }
+    });
+</script>
 </body>
 </html>

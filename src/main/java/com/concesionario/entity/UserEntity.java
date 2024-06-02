@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
 
 
@@ -17,32 +16,42 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "customer")
-public class CustomerEntity implements Serializable {
+@Table(name = "tanger_user")
+public class UserEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = -6196622178756080206L;
 
     @Id
     private String id;
+
     @Column(name = "username")
     private String username;
+
     @Column(name = "firstname")
     private String firstname;
+
     @Column(name = "lastname")
     private String lastname;
+
     @Column(name = "email")
     private String email;
+
     @Column(name="address")
     private String address;
+
     @Column(name="date_of_birth")
     private String dateOfBirth;
+
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @Column(name = "password")
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL)
+
+    @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL)
     private List<PurchaseEntity> purchaseEntityList;
 
 }
