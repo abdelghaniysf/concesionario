@@ -36,7 +36,7 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authz->
                         authz.requestMatchers(resources).permitAll()
-                                .requestMatchers("/","/register","/login","/error/**").permitAll()
+                                .requestMatchers("/","/register","/login","/error/**","/index","/car-sale","/car-rent","/about","/privacy","/terms","/team","/testimonial","h2-console").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin((form) -> form
                         .loginPage("/login")
