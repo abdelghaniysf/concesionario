@@ -37,13 +37,16 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRoleEntities(List.of(roleAdmin, roleUser));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-        try {
-            return userRepository.save(user);
-        } catch (DataIntegrityViolationException e) {
-            // Assuming that the DataIntegrityViolationException is due to the unique constraint violation on username
-            throw new RuntimeException("Username already exists", e);
+        if(userRepository.findByUsername(user.getUsername()).isPresent()){
+            throw new DataIntegrityViolationException("Username already exists");
         }
+        if(userRepository.findByEmail(user.getEmail()).isPresent()){
+            throw new DataIntegrityViolationException("Email already exists");
+        }
+        if(userRepository.findByNationalId(user.getNationalId()).isPresent()){
+            throw new DataIntegrityViolationException("National Id already exists");
+        }
+        return userRepository.save(user);
     }
 
     @Override

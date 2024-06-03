@@ -59,13 +59,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "user/register";
         }
-        try {
-            userService.createUser(user);
-        } catch (RuntimeException e) {
-            // Add an error message to the model to be displayed on the registration page
-            model.addAttribute("registrationError", e.getMessage());
-            return "user/register";
-        }
+        userService.createUser(user);
         return "redirect:/login";
     }
 }
