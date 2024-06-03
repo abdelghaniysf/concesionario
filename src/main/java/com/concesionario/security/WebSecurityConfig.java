@@ -43,7 +43,6 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authz->
                         authz.requestMatchers(resources).permitAll()
                                 .requestMatchers("/","/register","/login","/error/**","/index","/car-sale","/car-rent","/about","/privacy","/terms","/team","/testimonial","/h2-console/**","/detail","/booking").permitAll()
-
                                 .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .formLogin((form) -> form

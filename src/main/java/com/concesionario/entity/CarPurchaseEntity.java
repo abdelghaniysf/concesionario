@@ -28,6 +28,6 @@ public class CarPurchaseEntity implements Serializable {
     @JoinColumn(name = "purchase_invoice_number",insertable = false, updatable = false)
     private PurchaseEntity purchaseEntity;
     @ManyToOne
-    @JoinColumn(name = "car_code",insertable = false, updatable = false)
+    @JoinColumn(name = "chassis_serial_number",insertable = false, updatable = false)
     private CarEntity carEntity;
 }

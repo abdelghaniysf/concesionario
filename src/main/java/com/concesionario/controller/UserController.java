@@ -3,6 +3,8 @@ package com.concesionario.controller;
 
 import com.concesionario.entity.user.UserEntity;
 import com.concesionario.service.IUserEntityService;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -54,10 +57,11 @@ public class UserController {
         return "login";
     }
 
+
     @PostMapping("/register")
-    public String registerUser(UserEntity user, BindingResult result, Model model) {
+    public String registerUser(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "user/register";
+            return "register";
         }
         userService.createUser(user);
         return "redirect:/login";

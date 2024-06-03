@@ -1,7 +1,12 @@
 package com.concesionario.entity.user;
 
 import com.concesionario.entity.PurchaseEntity;
+import com.concesionario.validation.anotation.ExistEmail;
+import com.concesionario.validation.anotation.ExistNationalId;
+import com.concesionario.validation.anotation.ExistUsername;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serial;
@@ -22,9 +27,14 @@ public class UserEntity implements Serializable {
     private static final long serialVersionUID = -6196622178756080206L;
 
     @Id
+    @NotEmpty
+    @Column(name = "national_id",unique = true)
+    @ExistNationalId
     private String nationalId;
 
     @Column(name = "username",unique = true)
+    @NotEmpty
+    @ExistUsername
     private String username;
 
     @Column(name = "firstname")
@@ -34,6 +44,8 @@ public class UserEntity implements Serializable {
     private String lastname;
 
     @Column(name = "email")
+    @Email
+    @ExistEmail
     private String email;
 
     @Column(name="address")

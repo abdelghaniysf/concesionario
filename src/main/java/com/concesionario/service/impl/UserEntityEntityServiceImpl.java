@@ -11,6 +11,7 @@ import com.concesionario.service.IUserEntityService;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,7 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
     }
 
     @Override
+    @Transactional
     public UserEntity createUser(UserEntity user) {
         RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN)
                 .orElseThrow(() -> new RuntimeException("Role not found"));
@@ -37,15 +39,6 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRoleEntities(List.of(roleAdmin, roleUser));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        if(userRepository.findByUsername(user.getUsername()).isPresent()){
-            throw new DataIntegrityViolationException("Username already exists");
-        }
-        if(userRepository.findByEmail(user.getEmail()).isPresent()){
-            throw new DataIntegrityViolationException("Email already exists");
-        }
-        if(userRepository.findByNationalId(user.getNationalId()).isPresent()){
-            throw new DataIntegrityViolationException("National Id already exists");
-        }
         return userRepository.save(user);
     }
 

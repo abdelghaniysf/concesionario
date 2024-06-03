@@ -21,14 +21,15 @@ public class PurchaseEntity implements Serializable {
     private static final long serialVersionUID = -3977446857948765974L;
 
     @Id
-    @Column(name = "user_id")
-    private String userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "purchase_invoice_number")
+    private Integer purchaseInvoiceNumber;
 
     @Column(name = "invoice_number")
     private Integer invoiceNumber;
 
-    @Column(name = "user_dni")
-    private String customerDni;
+    @Column(name = "user_id")
+    private String userId;
 
     @Column(name = "date")
     @Temporal(TemporalType.TIMESTAMP)
@@ -40,10 +41,10 @@ public class PurchaseEntity implements Serializable {
     private String paymentMethod;
 
     @ManyToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name ="user_id",insertable = false,updatable = false)
     private UserEntity userEntity;
 
     @OneToMany(mappedBy = "purchaseEntity", cascade = CascadeType.ALL)
     private List<CarPurchaseEntity> carPurchaseEntityList;
+
 }

@@ -19,6 +19,6 @@ public class CarPurchasePK implements Serializable {
 
     @Column(name = "purchase_invoice_number")
     private Integer purchaseInvoiceNumber;
-    @Column(name = "car_code")
-    private Integer carCode;
+    @Column(name = "chassis_serial_number")
+    private String carCode;
 }

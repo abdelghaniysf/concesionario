@@ -12,6 +12,20 @@ INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, descript
 INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, description, model, model_year, color, number_doors, transmission, weight, number_seats, traction, steering, category, car_for, image_path) VALUES ('1HGCM82633A004356', 6, 'BMW', 350000.00, 15000, 'Supercar killer', 'M5 CS', '2021-03-10', 'Rojo', 2, 'AUTOMATIC', 1400, 2, 'REAR_WHEEL_DRIVE', 'ELECTRIC', 'SPORT', 'RENT', 'https://cdn.motor1.com/images/mgl/x6wO6/s1/2021-bmw-m5-cs.webp');
 
 
-
+-- Insertar roles
 INSERT INTO roles_db (role) VALUES ('ADMIN');
 INSERT INTO roles_db (role) VALUES ('USER');
+
+-- Insertar usuario con la contraseña encriptada
+INSERT INTO user_db (national_id, username, firstname, lastname, email, address, date_of_birth, phone_number, password)VALUES ('12345678A', 'mohammed', 'mohammed', 'el yousfi', 'mohammedelyousfi@gmail.com', '123 Main St','1990-01-01', '555-555-5555', '$2a$10$e0MYzXyjpJS7Pd0RVvHwHeF.Z.UmvJxa4riqZraA9P3hrKkT36n6C');
+
+-- Obtener el ID del usuario insertado (suponiendo que es el primero en ser insertado)
+SET @userId = (SELECT national_id FROM user_db WHERE email = 'mohammedelyousfi@gmail.com');
+
+-- Obtener los IDs de los roles
+SET @adminRoleId = (SELECT id FROM roles_db WHERE role = 'ADMIN');
+SET @userRoleId = (SELECT id FROM roles_db WHERE role = 'USER');
+
+-- Vincular usuario con roles
+INSERT INTO users_roles (user_id, role_id) VALUES (@userId, @adminRoleId);
+INSERT INTO users_roles (user_id, role_id) VALUES (@userId, @userRoleId);
