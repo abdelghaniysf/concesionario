@@ -153,16 +153,6 @@
             event.preventDefault();  // Evita que el formulario se envíe
         }
     }
-
-    // Verifica que el DOM está completamente cargado antes de agregar el evento
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', validatePassword);
-        } else {
-            console.log("Formulario no encontrado");
-        }
-    });
 </script>
 </body>
 </html>

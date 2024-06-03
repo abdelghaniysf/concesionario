@@ -192,13 +192,15 @@ h6,
 .rent-item {
     padding: 30px;
     text-align: center;
-    background: #ffd6b5;
+    background: var(--light);
     transition: .5s;
+    border: 2px solid var(--secondary);
 }
 
 .rent-item:hover,
 .rent-item.active {
     background: var(--secondary);
+    border: 2px solid var(--primary);
 }
 
 .rent-item h4 {
