@@ -1,6 +1,6 @@
-package com.concesionario.entity;
+package com.concesionario.entity.user;
 
-import com.concesionario.entity.enums.Role;
+import com.concesionario.entity.PurchaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,13 +16,13 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tanger_user")
+@Table(name = "user_db")
 public class UserEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = -6196622178756080206L;
 
     @Id
-    private String id;
+    private String nationalId;
 
     @Column(name = "username")
     private String username;
@@ -48,8 +48,11 @@ public class UserEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",joinColumns = @JoinColumn(name = "user_id" ),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+            ,uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id","role_id"})})
+    private List<RoleEntity> roleEntities;
 
     @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL)
     private List<PurchaseEntity> purchaseEntityList;

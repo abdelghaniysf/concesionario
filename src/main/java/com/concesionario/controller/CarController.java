@@ -4,7 +4,6 @@ import com.concesionario.entity.CarEntity;
 import com.concesionario.entity.MotorEntity;
 import com.concesionario.entity.enums.*;
 import com.concesionario.service.impl.CarService;
-import com.concesionario.service.impl.MotorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,9 +17,6 @@ public class CarController {
 
     @Autowired
     private CarService carService;
-
-    @Autowired
-    private MotorService motorService;
 
     @GetMapping("car-rent")
     public String getCarRent(Model model){

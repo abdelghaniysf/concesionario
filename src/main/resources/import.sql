@@ -11,3 +11,7 @@ INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, descript
 INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, description, model, model_year, color, number_doors, transmission, weight, number_seats, traction, steering, category, car_for, image_path) VALUES ('1HGCM82633A004355', 5, 'MERCEDES', 350000.00, 15000, 'Supercar killer', 'gt63se', '2021-03-10', 'Rojo', 2, 'AUTOMATIC', 1400, 2, 'REAR_WHEEL_DRIVE', 'ELECTRIC', 'SPORT', 'SALE', 'https://cdn.motor1.com/images/mgl/MkkY7X/s3/mercedes-amg-gt-63-s-e-performance-f1-edition.jpg');
 INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, description, model, model_year, color, number_doors, transmission, weight, number_seats, traction, steering, category, car_for, image_path) VALUES ('1HGCM82633A004356', 6, 'BMW', 350000.00, 15000, 'Supercar killer', 'M5 CS', '2021-03-10', 'Rojo', 2, 'AUTOMATIC', 1400, 2, 'REAR_WHEEL_DRIVE', 'ELECTRIC', 'SPORT', 'RENT', 'https://cdn.motor1.com/images/mgl/x6wO6/s1/2021-bmw-m5-cs.webp');
 
+
+
+INSERT INTO roles_db (role) VALUES ('ADMIN');
+INSERT INTO roles_db (role) VALUES ('USER');

@@ -1,5 +1,6 @@
 package com.concesionario.entity;
 
+import com.concesionario.entity.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

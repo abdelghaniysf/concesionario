@@ -3,13 +3,14 @@ package com.concesionario.service.impl;
 import com.concesionario.entity.CarEntity;
 import com.concesionario.entity.enums.CarFor;
 import com.concesionario.repository.CarRepository;
+import com.concesionario.service.ICarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CarService {
+public class CarService implements ICarService {
     @Autowired
     private CarRepository carRepository;
 

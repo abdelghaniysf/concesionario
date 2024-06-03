@@ -1,5 +1,5 @@
 package com.concesionario.entity.enums;
 
-public enum Role {
-    CUSTOMER,ADMIN
+public enum RoleEnum {
+    ADMIN, USER
 }
