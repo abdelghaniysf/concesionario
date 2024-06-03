@@ -49,6 +49,7 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
         return userRepository.save(user);
     }
 
+
     @Override
     public Optional<UserEntity> getUserByUsername(String name) {
         return userRepository.findByUsername(name);
