@@ -76,7 +76,7 @@
                         <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
                         <a th:href="@{/about}" class="nav-item nav-link">About</a>
                         <a th:href="@{/logout}" sec:authorize="isAuthenticated()"  class="nav-item nav-link">
-                            <i class="fa fa-user"></i> Logout
+                            Logout
                         </a>
                         <a th:href="@{/login}" sec:authorize="!isAuthenticated()" class="nav-item nav-link">
                             <i class="fa fa-user"></i> Login
@@ -109,7 +109,7 @@
                 <div class="d-flex flex-column justify-content-start">
                     <a class="text-body mb-2" th:href="@{/privacy}"><i class="fa fa-angle-right text-white mr-2"></i>Private Policy</a>
                     <a class="text-body mb-2" th:href="@{/terms}"><i class="fa fa-angle-right text-white mr-2"></i>Term & Conditions</a>
-                    <a class="text-body mb-2" th:href="@{/register}"><i class="fa fa-angle-right text-white mr-2"></i>New Member Registration</a>
+                    <a class="text-body mb-2" th:href="@{/register}" sec:authorize="!isAuthenticated()"><i class="fa fa-angle-right text-white mr-2"></i>New Member Registration</a>
                     <a class="text-body mb-2" th:href="@{/team}"><i class="fa fa-angle-right text-white mr-2"></i>Team</a>
                     <a class="text-body mb-2" th:href="@{/testimonial}"><i class="fa fa-angle-right text-white mr-2"></i>Testimonial</a>
                     <a class="text-body mb-2" th:href="@{/contact}"><i class="fa fa-angle-right text-white mr-2"></i>Contact</a>

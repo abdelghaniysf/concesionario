@@ -8,6 +8,7 @@ import com.concesionario.entity.user.UserEntity;
 import com.concesionario.repository.IRoleEntityRepository;
 import com.concesionario.repository.IUserEntityRepository;
 import com.concesionario.service.IUserEntityService;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,20 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
     }
 
     @Override
-    public UserEntity createUser(UserEntity user)  {
-        RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN).orElseThrow(() -> new RuntimeException("Role not found"));
-        RoleEntity roleUser = roleRepository.findByRole(RoleEnum.USER).orElseThrow(() -> new RuntimeException("Role not found"));
+    public UserEntity createUser(UserEntity user) {
+        RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN)
+                .orElseThrow(() -> new RuntimeException("Role not found"));
+        RoleEntity roleUser = roleRepository.findByRole(RoleEnum.USER)
+                .orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRoleEntities(List.of(roleAdmin, roleUser));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+
+        try {
+            return userRepository.save(user);
+        } catch (DataIntegrityViolationException e) {
+            // Assuming that the DataIntegrityViolationException is due to the unique constraint violation on username
+            throw new RuntimeException("Username already exists", e);
+        }
     }
 
     @Override

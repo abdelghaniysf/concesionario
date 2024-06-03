@@ -24,7 +24,7 @@ public class UserEntity implements Serializable {
     @Id
     private String nationalId;
 
-    @Column(name = "username")
+    @Column(name = "username",unique = true)
     private String username;
 
     @Column(name = "firstname")

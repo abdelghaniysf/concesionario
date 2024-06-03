@@ -42,24 +42,30 @@ public class UserController {
                            Model model, Principal principal, RedirectAttributes flash){
 
         if(principal!=null){
-            flash.addFlashAttribute("info","Ya ha iniciado sesión antes");
+            flash.addFlashAttribute("info","You are already logged in");
             return "redirect:/";
         }
         if(error != null){
-            model.addAttribute("error","Nombre de usuario o la contraseña incorrecta");
+            model.addAttribute("error","Invalid username or password.");
         }
         if(logout!=null){
-            model.addAttribute("success","sesión cerrada");
+            model.addAttribute("success","Session closed");
         }
         return "login";
     }
 
     @PostMapping("/register")
-     public String registerUser(UserEntity user, BindingResult result, Model model) {
+    public String registerUser(UserEntity user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "user/register";
         }
-        userService.createUser(user);
+        try {
+            userService.createUser(user);
+        } catch (RuntimeException e) {
+            // Add an error message to the model to be displayed on the registration page
+            model.addAttribute("registrationError", e.getMessage());
+            return "user/register";
+        }
         return "redirect:/login";
     }
 }

@@ -66,6 +66,10 @@
             <div class="container text-center"><h2 class="text-primary">Create an Account</h2></div>
             <br>
             <form th:action="@{/register}" method="POST">
+                <!-- Mostrar mensaje de error si existe -->
+                <div th:if="${registrationError}" class="alert alert-danger" role="alert">
+                    <p th:text="${registrationError}"></p>
+                </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="firstname" class="text-white">First Name</label>
