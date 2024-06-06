@@ -16,11 +16,11 @@ public class ExistNumberValidation implements ConstraintValidator<ExistNumber,St
     }
 
     @Override
-    public boolean isValid(String number, ConstraintValidatorContext context) {
-        if(number == null){
+    public boolean isValid(String phone_number, ConstraintValidatorContext context) {
+        if(phone_number == null){
             return false;
         }
         // Verificar si el email ya existe en el repositorio
-        return !userRepository.findByNumber(number).isPresent();
+        return !userRepository.findByPhoneNumber(phone_number).isPresent();
     }
 }
