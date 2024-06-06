@@ -3,6 +3,7 @@ package com.concesionario.entity.dto;
 import com.concesionario.entity.user.RoleEntity;
 import com.concesionario.validation.anotation.ExistEmail;
 import com.concesionario.validation.anotation.ExistNationalId;
+import com.concesionario.validation.anotation.ExistNumber;
 import com.concesionario.validation.anotation.ExistUsername;
 
 import jakarta.validation.constraints.Email;
@@ -37,6 +38,7 @@ public class UserDTO {
     @NotEmpty
     private String dateOfBirth;
     @NotEmpty
+    @ExistNumber
     private String phoneNumber;
     private String password;
     private List<RoleEntity> roleEntities;

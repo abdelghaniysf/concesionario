@@ -1,26 +1,26 @@
 package com.concesionario.validation.validator;
 
 import com.concesionario.repository.IUserEntityRepository;
-import com.concesionario.validation.anotation.ExistEmail;
+import com.concesionario.validation.anotation.ExistNumber;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExistEmailValidation implements ConstraintValidator<ExistEmail,String> {
+public class ExistNumberValidation implements ConstraintValidator<ExistNumber,String> {
 
     private  final IUserEntityRepository userRepository;
 
-    public ExistEmailValidation(IUserEntityRepository userRepository) {
+    public ExistNumberValidation(IUserEntityRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public boolean isValid(String email, ConstraintValidatorContext context) {
-        if(email == null){
+    public boolean isValid(String number, ConstraintValidatorContext context) {
+        if(number == null){
             return false;
         }
         // Verificar si el email ya existe en el repositorio
-        return !userRepository.findByEmail(email).isPresent();
+        return !userRepository.findByNumber(number).isPresent();
     }
 }
