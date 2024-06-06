@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService implements ICarService {
@@ -24,6 +25,11 @@ public class CarService implements ICarService {
 
     public List<CarEntity> findCarsForRent() {
         return carRepository.findByCarFor(CarFor.RENT);
+    }
+
+    @Override
+    public Optional<CarEntity> getCarByChassisSerialNumber(String chassisSerialNumber) {
+        return carRepository.findByChassisSerialNumber(chassisSerialNumber);
     }
 }
 

@@ -25,11 +25,6 @@ public class CarController {
         return "carRent";
     }
 
-    @GetMapping("booking")
-    public String getBooking(){
-        return "booking";
-    }
-
     @GetMapping("car-sale")
     public String getCarBuyPage(Model model) {
         List<CarEntity> carsForSale = carService.findCarsForSale();
