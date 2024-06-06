@@ -15,18 +15,3 @@ INSERT INTO car (chassis_serial_number, motor_id, car_brand, price, km, descript
 -- Insertar roles
 INSERT INTO roles_db (role) VALUES ('ADMIN');
 INSERT INTO roles_db (role) VALUES ('USER');
-
--- Insertar usuario con la contraseña encriptada
-INSERT INTO user_db (national_id, username, firstname, lastname, email, address, date_of_birth, phone_number, password)VALUES ('12345678A', 'mohammed', 'mohammed', 'el yousfi', 'mohammedelyousfi@gmail.com', '123 Main St','1990-01-01', '555-555-5555', '$2a$10$e0MYzXyjpJS7Pd0RVvHwHeF.Z.UmvJxa4riqZraA9P3hrKkT36n6C');
-INSERT INTO user_db (national_id, username, firstname, lastname, email, address, date_of_birth, phone_number, password)VALUES ('12345678B', 'abdel', 'abdel', 'el yousfi', 'abdelelyousfi@gmail.com', '123 Main St','1990-01-01', '155-555-5555', '$2a$10$RvDzLitpCGR72IyHiurGLeZ4kiWLpAytMD/L1dURju/8HtQCiQXB6');
-
--- Obtener el ID del usuario insertado (suponiendo que es el primero en ser insertado)
-SET @userId = (SELECT national_id FROM user_db WHERE email = 'mohammedelyousfi@gmail.com');
-
--- Obtener los IDs de los roles
-SET @adminRoleId = (SELECT id FROM roles_db WHERE role = 'ADMIN');
-SET @userRoleId = (SELECT id FROM roles_db WHERE role = 'USER');
-
--- Vincular usuario con roles
-INSERT INTO users_roles (user_id, role_id) VALUES (@userId, @adminRoleId);
-INSERT INTO users_roles (user_id, role_id) VALUES (@userId, @userRoleId);

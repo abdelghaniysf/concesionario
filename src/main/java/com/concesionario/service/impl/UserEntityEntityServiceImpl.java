@@ -2,6 +2,7 @@ package com.concesionario.service.impl;
 
 
 
+import com.concesionario.entity.dto.UserDTO;
 import com.concesionario.entity.enums.RoleEnum;
 import com.concesionario.entity.user.RoleEntity;
 import com.concesionario.entity.user.UserEntity;
@@ -32,14 +33,26 @@ public class UserEntityEntityServiceImpl implements IUserEntityService {
 
     @Override
     @Transactional
-    public UserEntity createUser(UserEntity user) {
+    public UserEntity createUser(UserDTO user) {
         RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN)
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         RoleEntity roleUser = roleRepository.findByRole(RoleEnum.USER)
                 .orElseThrow(() -> new RuntimeException("Role not found"));
         user.setRoleEntities(List.of(roleAdmin, roleUser));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        UserEntity userEntity = UserEntity.builder()
+                .username(user.getUsername())
+                .nationalId(user.getNationalId())
+                .firstname(user.getFirstname())
+                .lastname(user.getLastname())
+                .email(user.getEmail())
+                .address(user.getAddress())
+                .dateOfBirth(user.getDateOfBirth())
+                .phoneNumber(user.getPhoneNumber())
+                .password(user.getPassword())
+                .roleEntities(user.getRoleEntities())
+                .build();
+        return userRepository.save(userEntity);
     }
 
 

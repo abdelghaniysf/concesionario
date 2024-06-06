@@ -1,6 +1,7 @@
 package com.concesionario.controller;
 
 
+import com.concesionario.entity.dto.UserDTO;
 import com.concesionario.entity.user.UserEntity;
 import com.concesionario.service.IUserEntityService;
 import jakarta.transaction.Transactional;
@@ -35,7 +36,7 @@ public class UserController {
             flash.addFlashAttribute("errorMessage","El usuario ya ha iniciado sesion");
             return "redirect:/";
         }
-        model.addAttribute("user",new UserEntity());
+        model.addAttribute("user",new UserDTO());
         return "register";
     }
 
@@ -59,8 +60,10 @@ public class UserController {
 
 
     @PostMapping("/register")
-    public String registerUser(@Valid @ModelAttribute("user") UserEntity user, BindingResult result, Model model) {
+    public String registerUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+        System.out.println(user);
         if (result.hasErrors()) {
+            System.out.println(result.getAllErrors());
             return "register";
         }
         userService.createUser(user);
