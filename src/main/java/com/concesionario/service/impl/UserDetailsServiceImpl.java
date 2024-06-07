@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional()
@@ -33,5 +34,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         UserDetails userDetails =new User(user.getUsername(),user.getPassword(),grantedAuthorities);
         return userDetails;
+    }
+
+    public Optional<UserEntity> getUserByUsername(String name) {
+        return userRepository.findByUsername(name);
     }
 }

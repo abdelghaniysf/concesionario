@@ -32,11 +32,6 @@ public class CarController {
         return "carSale";
     }
 
-    @GetMapping("detail")
-    public String getDetail(){
-        return "detail";
-    }
-
     @GetMapping("car-register")
     public String getCarRegister(Model model) {
         model.addAttribute("carBrands", CarBrand.values());
