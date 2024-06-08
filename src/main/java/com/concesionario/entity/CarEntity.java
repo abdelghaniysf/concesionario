@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 @ToString
 @Builder
@@ -83,4 +84,7 @@ public class CarEntity implements Serializable {
 
     @Column(name = "image_path")
     private String imagePath;
+
+    @Column(name = "available")
+    private boolean available = true;
 }

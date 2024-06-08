@@ -65,8 +65,14 @@ public class RentController {
                 booking.setCar(car);
                 booking.setUser(user);
 
+                // Guardar la reserva
                 bookingService.saveBooking(booking);
-                return "redirect:/confirmation";
+
+                // Actualizar el estado del coche a no disponible
+                car.setAvailable(false);
+                carService.save(car);
+
+                return "redirect:/car-rent";
             } else {
                 return "redirect:/login";
             }
@@ -74,4 +80,5 @@ public class RentController {
             return "car-not-found";
         }
     }
+
 }

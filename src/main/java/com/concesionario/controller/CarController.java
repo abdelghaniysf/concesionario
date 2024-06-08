@@ -20,15 +20,17 @@ public class CarController {
 
     @GetMapping("car-rent")
     public String getCarRent(Model model){
-        List<CarEntity> carsForRent = carService.findCarsForRent();
+        List<CarEntity> carsForRent = carService.findAvailableCarsForRent(true);
         model.addAttribute("cars", carsForRent);
+        model.addAttribute("locations", Location.values());
         return "carRent";
     }
 
     @GetMapping("car-sale")
     public String getCarBuyPage(Model model) {
-        List<CarEntity> carsForSale = carService.findCarsForSale();
+        List<CarEntity> carsForSale = carService.findAvailableCarsForSale();
         model.addAttribute("cars", carsForSale);
+        model.addAttribute("locations", Location.values());
         return "carSale";
     }
 

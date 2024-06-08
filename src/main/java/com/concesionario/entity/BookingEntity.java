@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Getter
@@ -43,13 +43,14 @@ public class BookingEntity implements Serializable {
     private Location dropLocation;
 
     @Column(name = "pickup_date", nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate pickupDate;
+    private String pickupDate;
 
     @Column(name = "pickup_time", nullable = false)
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-    private LocalTime pickupTime;
+    private String pickupTime;
 
     @Column(name = "special_request")
     private String specialRequest;
+
+    @Column
+    private String paymentMethod;
 }

@@ -18,7 +18,7 @@ public class BuyController {
 
     @GetMapping("detail")
     public String getDetail(Model model){
-        List<CarEntity> carsForSale = carService.findCarsForSale();
+        List<CarEntity> carsForSale = carService.findAvailableCarsForSale();
         model.addAttribute("cars", carsForSale);
         model.addAttribute("locations", Location.values());
         return "detail";
