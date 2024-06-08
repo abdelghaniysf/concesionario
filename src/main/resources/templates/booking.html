@@ -5,6 +5,7 @@
 <body>
 <header th:replace="~{layout/layout :: header}">
 </header>
+
 <!-- Detail Start -->
 <div class="container-fluid pt-5">
     <div class="container pt-5 pb-3">
@@ -64,90 +65,93 @@
     </div>
 </div>
 <!-- Detail End -->
+
 <!-- Car Booking Start -->
 <div class="container-fluid pb-5">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <h2 class="mb-4">Personal Detail</h2>
-                <div class="mb-5">
-                    <div class="row">
-                        <div class="col-6 form-group">
-                            <input type="text" class="form-control p-4" placeholder="First Name" th:value="${user.firstname}" required="required" disabled>
-                        </div>
-                        <div class="col-6 form-group">
-                            <input type="text" class="form-control p-4" placeholder="Last Name" th:value="${user.lastname}" required="required" disabled>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 form-group">
-                            <input type="email" class="form-control p-4" placeholder="Your Email" th:value="${user.email}" required="required" disabled>
-                        </div>
-                        <div class="col-6 form-group">
-                            <input type="text" class="form-control p-4" placeholder="Mobile Number" th:value="${user.phoneNumber}" required="required" disabled>
-                        </div>
-                    </div>
-                </div>
-                <h2 class="mb-4">Booking Detail</h2>
-                <div class="mb-5">
-                    <div class="row">
-                        <div class="col-6 form-group">
-                            <select class="custom-select px-4" style="height: 50px;" name="dropLocation">
-                                <option selected>Pickup Location</option>
-                                <option th:each="location : ${locations}" th:value="${location}" th:text="${location.address}"></option>
-                            </select>
-                        </div>
-                        <div class="col-6 form-group">
-                            <select class="custom-select px-4" style="height: 50px;" name="dropLocation">
-                                <option selected>Drop Location</option>
-                                <option th:each="location : ${locations}" th:value="${location}" th:text="${location.address}"></option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 form-group">
-                            <div class="date" id="date2" data-target-input="nearest">
-                                <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Pickup Date"
-                                       data-target="#date2" data-toggle="datetimepicker" />
+        <form action="#" method="post" th:object="booking">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Personal Detail</h2>
+                    <div class="mb-5">
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <input type="text" class="form-control p-4" placeholder="First Name" th:value="${user.firstname}" required="required" disabled>
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" class="form-control p-4" placeholder="Last Name" th:value="${user.lastname}" required="required" disabled>
                             </div>
                         </div>
-                        <div class="col-6 form-group">
-                            <div class="time" id="time2" data-target-input="nearest">
-                                <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Pickup Time"
-                                       data-target="#time2" data-toggle="datetimepicker" />
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <input type="email" class="form-control p-4" placeholder="Your Email" th:value="${user.email}" required="required" disabled>
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" class="form-control p-4" placeholder="Mobile Number" th:value="${user.phoneNumber}" required="required" disabled>
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control py-3 px-4" rows="3" placeholder="Special Request" required="required"></textarea>
+                    <h2 class="mb-4">Booking Detail</h2>
+                    <div class="mb-5">
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <select class="custom-select px-4" style="height: 50px;" name="pickupLocation" required>
+                                    <option disabled selected value="">Select Pickup Location</option>
+                                    <option th:each="location : ${locations}" th:value="${location}" th:text="${location.address}"></option>
+                                </select>
+                            </div>
+                            <div class="col-6 form-group">
+                                <select class="custom-select px-4" style="height: 50px;" name="dropLocation" required>
+                                    <option disabled selected value="">Select Drop Location</option>
+                                    <option th:each="location : ${locations}" th:value="${location}" th:text="${location.address}"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <div class="date" id="date2" data-target-input="nearest">
+                                    <input type="text" class="form-control p-4 datetimepicker-input" th:field="*{pickupDate}" placeholder="Pickup Date"
+                                           data-target="#date2" data-toggle="datetimepicker" required />
+                                </div>
+                            </div>
+                            <div class="col-6 form-group">
+                                <div class="time" id="time2" data-target-input="nearest">
+                                    <input type="text" class="form-control p-4 datetimepicker-input" th:field="*{pickupTime}" placeholder="Pickup Time"
+                                           data-target="#time2" data-toggle="datetimepicker" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control py-3 px-4" rows="3" placeholder="Special Request" th:field="*{specialRequest}"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bg-secondary p-5 mb-5">
+                        <h2 class="text-primary mb-4">Payment</h2>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="paypal" required>
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="directcheck" required>
+                                <label class="custom-control-label" for="directcheck">Direct Check</label>
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer" required>
+                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="bg-secondary p-5 mb-5">
-                    <h2 class="text-primary mb-4">Payment</h2>
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                            <label class="custom-control-label" for="paypal">Paypal</label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                            <label class="custom-control-label" for="directcheck">Direct Check</label>
-                        </div>
-                    </div>
-                    <div class="form-group mb-4">
-                        <div class="custom-control custom-radio">
-                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                            <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                        </div>
-                    </div>
-                    <button class="btn btn-block btn-primary py-3">Reserve Now</button>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
 </div>
 <!-- Car Booking End -->
@@ -157,28 +161,28 @@
     <div class="container py-5">
         <div class="owl-carousel vendor-carousel">
             <div class="bg-light p-4">
-                <img src="img/vendor-1.png" alt="">
+                <img src="/img/vendor-1.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-2.png" alt="">
+                <img src="/img/vendor-2.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-3.png" alt="">
+                <img src="/img/vendor-3.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-4.png" alt="">
+                <img src="/img/vendor-4.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-5.png" alt="">
+                <img src="/img/vendor-5.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-6.png" alt="">
+                <img src="/img/vendor-6.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-7.png" alt="">
+                <img src="/img/vendor-7.png" alt="">
             </div>
             <div class="bg-light p-4">
-                <img src="img/vendor-8.png" alt="">
+                <img src="/img/vendor-8.png" alt="">
             </div>
         </div>
     </div>
@@ -208,24 +212,14 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/waypoints/waypoints.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="lib/tempusdominus/js/moment.min.js"></script>
-<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
 <!-- Template Javascript -->
-<script src="js/main.js"></script>
-
-<!-- Custom Script -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        // Establecer la fecha mínima para el input de fecha
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById("pickupDate").setAttribute("min", today);
-    });
-</script>
-
+<script src="/js/main.js"></script>
 </body>
 </html>

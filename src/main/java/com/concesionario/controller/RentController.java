@@ -1,6 +1,6 @@
 package com.concesionario.controller;
 
-import com.concesionario.BookingEntity;
+import com.concesionario.entity.BookingEntity;
 import com.concesionario.entity.CarEntity;
 import com.concesionario.entity.enums.Location;
 import com.concesionario.entity.user.UserEntity;

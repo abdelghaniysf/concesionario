@@ -1,6 +1,6 @@
-package com.concesionario;
+package com.concesionario.entity;
 
-import com.concesionario.entity.CarEntity;
+import com.concesionario.entity.enums.Location;
 import com.concesionario.entity.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -34,11 +34,13 @@ public class BookingEntity implements Serializable {
     @JoinColumn(name = "user_id", referencedColumnName = "national_id")
     private UserEntity user;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "pickup_location", nullable = false)
-    private String pickupLocation;
+    private Location pickupLocation;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "drop_location", nullable = false)
-    private String dropLocation;
+    private Location dropLocation;
 
     @Column(name = "pickup_date", nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
