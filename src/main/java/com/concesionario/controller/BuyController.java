@@ -2,7 +2,6 @@ package com.concesionario.controller;
 
 import com.concesionario.entity.CarEntity;
 import com.concesionario.entity.enums.Location;
-import com.concesionario.entity.user.UserEntity;
 import com.concesionario.service.impl.CarService;
 import com.concesionario.service.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -29,7 +29,9 @@ public class BuyController {
 
     @GetMapping("/{chassisSerialNumber}")
     public String getDetail(@PathVariable String chassisSerialNumber, Model model) {
+        List<CarEntity> carsForSale = carService.findAvailableCarsForSale();
         model.addAttribute("locations", Location.values());
+        model.addAttribute("cars", carsForSale);
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
