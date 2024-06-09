@@ -8,9 +8,11 @@ import lombok.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -40,16 +42,18 @@ public class SaleEntity implements Serializable {
     @Column(name = "pickup_location", nullable = false)
     private Location pickupLocation;
 
-    @Column(name = "pickup_date_time", nullable = false)
-    private LocalDateTime pickupDateTime;
+    @Column(name = "pickup_date", nullable = false)
+    private String pickupDate;
+
+    @Column(name = "pickup_time", nullable = false)
+    private String pickupTime;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "national_id")
     private UserEntity user;
 
-    @Column(name = "special_request")
-    private String specialRequest;
-
-    @Column(name = "payment_method")
-    private String paymentMethod;
+    @PrePersist
+    public void setPickupDateTime() {
+        this.saleDateTime = LocalDateTime.now();
+    }
 }

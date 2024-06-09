@@ -9,7 +9,6 @@ import com.concesionario.entity.user.UserEntity;
 import com.concesionario.repository.IRoleEntityRepository;
 import com.concesionario.repository.IUserEntityRepository;
 import com.concesionario.service.IUserEntityService;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,14 +17,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserEntityEntityServiceImpl implements IUserEntityService {
+public class UserEntityServiceImpl implements IUserEntityService {
 
     private final IUserEntityRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final IRoleEntityRepository roleRepository;
 
 
-    public UserEntityEntityServiceImpl(PasswordEncoder passwordEncoder, IUserEntityRepository userRepository, IRoleEntityRepository roleRepository) {
+    public UserEntityServiceImpl(PasswordEncoder passwordEncoder, IUserEntityRepository userRepository, IRoleEntityRepository roleRepository) {
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;

@@ -7,6 +7,7 @@ import com.concesionario.entity.user.UserEntity;
 import com.concesionario.service.impl.BookingService;
 import com.concesionario.service.impl.CarService;
 import com.concesionario.service.impl.UserDetailsServiceImpl;
+import com.concesionario.service.impl.UserEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +23,7 @@ import java.util.Optional;
 public class RentController {
 
     @Autowired
-    private UserDetailsServiceImpl userService;
+    private UserEntityServiceImpl userService;
 
     @Autowired
     private CarService carService;
