@@ -10,14 +10,15 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Rubik&display=swap"
+          rel="stylesheet">
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
     <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -76,7 +77,8 @@
                         <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
                         <a th:href="@{/about}" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
-                            <a href="#" class="nav-link dropdown-toggle" th:text="${#authentication.principal.username}" data-toggle="dropdown"></a>
+                            <a href="#" class="nav-link dropdown-toggle" th:text="${#authentication.principal.username}"
+                               data-toggle="dropdown"></a>
                             <div class="dropdown-menu">
                                 <a th:href="@{/my-account}" class="dropdown-item">My Account</a>
                                 <a th:href="@{/my-operations}" class="dropdown-item">My Operations</a>
@@ -113,11 +115,16 @@
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-uppercase text-light mb-4">Useful Links</h4>
                 <div class="d-flex flex-column justify-content-start">
-                    <a class="text-body mb-2" th:href="@{/privacy}"><i class="fa fa-angle-right text-white mr-2"></i>Private Policy</a>
-                    <a class="text-body mb-2" th:href="@{/terms}"><i class="fa fa-angle-right text-white mr-2"></i>Term & Conditions</a>
-                    <a class="text-body mb-2" th:href="@{/register}" sec:authorize="!isAuthenticated()"><i class="fa fa-angle-right text-white mr-2"></i>New Member Registration</a>
-                    <a class="text-body mb-2" th:href="@{/team}"><i class="fa fa-angle-right text-white mr-2"></i>Team</a>
-                    <a class="text-body mb-2" th:href="@{/testimonial}"><i class="fa fa-angle-right text-white mr-2"></i>Testimonial</a>
+                    <a class="text-body mb-2" th:href="@{/privacy}"><i class="fa fa-angle-right text-white mr-2"></i>Private
+                        Policy</a>
+                    <a class="text-body mb-2" th:href="@{/terms}"><i class="fa fa-angle-right text-white mr-2"></i>Term
+                        & Conditions</a>
+                    <a class="text-body mb-2" th:href="@{/register}" sec:authorize="!isAuthenticated()"><i
+                            class="fa fa-angle-right text-white mr-2"></i>New Member Registration</a>
+                    <a class="text-body mb-2" th:href="@{/team}"><i
+                            class="fa fa-angle-right text-white mr-2"></i>Team</a>
+                    <a class="text-body mb-2" th:href="@{/testimonial}"><i
+                            class="fa fa-angle-right text-white mr-2"></i>Testimonial</a>
                     <a class="text-body mb-2" th:href="@{/contact}"><i class="fa fa-angle-right text-white mr-2"></i>Contact</a>
                 </div>
             </div>
@@ -131,7 +138,7 @@
                         <img class="w-100" th:src="@{/img/gallery-2.jpg}" src="/img/gallery-2.jpg" alt="">
                     </div>
                     <div class="col-4 px-1 mb-2">
-                        <img class="w-100"  th:src="@{/img/gallery-3.jpg}"   src="/img/gallery-3.jpg" alt="">
+                        <img class="w-100" th:src="@{/img/gallery-3.jpg}" src="/img/gallery-3.jpg" alt="">
                     </div>
                     <div class="col-4 px-1 mb-2">
                         <img class="w-100" th:src="@{/img/gallery-4.jpg}" src="/img/gallery-4.jpg" alt="">
@@ -146,10 +153,12 @@
             </div>
             <div class="col-lg-3 col-md-6 mb-5">
                 <h4 class="text-uppercase text-light mb-4">Newsletter</h4>
-                <p class="mb-4">Stay updated with the latest news, exclusive offers, and special promotions. Subscribe to our newsletter and never miss out!</p>
+                <p class="mb-4">Stay updated with the latest news, exclusive offers, and special promotions. Subscribe
+                    to our newsletter and never miss out!</p>
                 <div class="w-100 mb-3">
                     <div class="input-group">
-                        <input type="text" class="form-control bg-dark border-dark" style="padding: 25px;" placeholder="Your Email">
+                        <input type="text" class="form-control bg-dark border-dark" style="padding: 25px;"
+                               placeholder="Your Email">
                         <div class="input-group-append">
                             <button class="btn btn-primary text-uppercase px-3">Sign Up</button>
                         </div>
@@ -160,7 +169,8 @@
         </div>
     </div>
     <div class="container-fluid bg-dark py-4">
-        <p class="mb-2 text-center text-body">&copy; <a th:href="@{/index}">TANGER ROYAL CARS</a>. All Rights Reserved.</p>
+        <p class="mb-2 text-center text-body">&copy; <a th:href="@{/index}">TANGER ROYAL CARS</a>. All Rights Reserved.
+        </p>
     </div>
 </footer>
 </body>

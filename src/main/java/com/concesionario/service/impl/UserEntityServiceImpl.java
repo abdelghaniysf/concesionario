@@ -61,7 +61,7 @@ public class UserEntityServiceImpl implements IUserEntityService {
     }
 
     @Override
-    public UserEntity updateUser(UserEntity user) {
+    public UserEntity updateUser(UserDTO user) {
         Optional<UserEntity> userOptional = userRepository.findById(user.getNationalId());
         if(userOptional.isPresent()){
             UserEntity userUpdated = userOptional.get();

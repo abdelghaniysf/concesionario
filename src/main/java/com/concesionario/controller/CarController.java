@@ -23,7 +23,7 @@ public class CarController {
         List<CarEntity> carsForRent = carService.findCarsForRent();
         model.addAttribute("cars", carsForRent);
         model.addAttribute("locations", Location.values());
-        return "carRent";
+        return "car-rent";
     }
 
     @GetMapping("car-sale")
@@ -31,7 +31,7 @@ public class CarController {
         List<CarEntity> carsForSale = carService.findCarsForSale();
         model.addAttribute("cars", carsForSale);
         model.addAttribute("locations", Location.values());
-        return "carSale";
+        return "car-sale";
     }
 
     @GetMapping("car-register")
@@ -45,7 +45,7 @@ public class CarController {
         model.addAttribute("carFors", CarFor.values());
         model.addAttribute("motor", new MotorEntity());
         model.addAttribute("car", new CarEntity());
-        return "carRegister";
+        return "car-register";
     }
     @PostMapping("/car-register")
     public String registerCar( @ModelAttribute CarEntity car, Model model) {

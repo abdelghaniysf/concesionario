@@ -43,7 +43,7 @@ public class IndexController {
 
     @GetMapping("terms")
     public String getTerms(){
-        return "terms&conditions";
+        return "terms-conditions";
     }
 
     @GetMapping("car-not-found")

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface IUserEntityService {
     UserEntity createUser(UserDTO user);
     Optional<UserEntity> getUserByUsername(String name);
-    UserEntity updateUser(UserEntity user);
+    UserEntity updateUser(UserDTO user);
     void deleteUser(UserEntity usuario);
     Optional<UserEntity> getUserById(String id);
 }

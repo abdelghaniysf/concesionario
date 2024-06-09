@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{layout/layout :: head}">
+<head th:replace="~{layout/layout :: head}"></head>
 <body>
 <header>
     <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
@@ -51,7 +51,8 @@
                         <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
                         <a th:href="@{/about}" class="nav-item nav-link">About</a>
                         <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
-                            <a href="#" class="nav-link dropdown-toggle" th:text="${#authentication.principal.username}" data-toggle="dropdown"></a>
+                            <a href="#" class="nav-link dropdown-toggle" th:text="${#authentication.principal.username}"
+                               data-toggle="dropdown"></a>
                             <div class="dropdown-menu">
                                 <a th:href="@{/my-account}" class="dropdown-item">My Account</a>
                                 <a th:href="@{/my-operations}" class="dropdown-item">My Operations</a>
@@ -68,7 +69,8 @@
     </div>
     <!-- Navbar End -->
     <!-- Search Start -->
-    <div class="container-fluid bg-white pt-3 px-lg-5">
+    <form action="" method="post">
+        <div class="container-fluid bg-white pt-3 px-lg-5">
             <div class="col-xl-2 col-lg-4 col-md-6 px-2">
                 <select class="custom-select px-4 mb-3">
                     <option selected>Category</option>
@@ -88,92 +90,97 @@
             <div class="col-xl-2 col-lg-4 col-md-6 px-2">
                 <button class="btn btn-primary btn-block mb-3" type="submit">Search</button>
             </div>
-    </div>
+        </div>
+    </form>
     <!-- Search End -->
 </header>
-    <!-- Rent A Car Start -->
-    <div class="container-fluid py-5">
-        <div class="container pt-5 pb-3">
-            <h1 class="display-4 text-uppercase text-center mb-5">Find Your Car</h1>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 mb-2" th:each="car : ${cars}">
-                    <div class="rent-item mb-4">
-                        <img class="img-fluid mb-4" th:if="${car.isAvailable()}" th:src="@{${car.imagePath}}" alt="Car image">
-                        <img class="img-fluid mb-4" th:if="${!car.isAvailable()}" th:src="@{${car.imagePath}}" alt="Car image" style="opacity: 0.5; position: relative;">
-                        <span th:if="${!car.isAvailable()}" style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0, 0, 0, 0.5); padding: 10px; font-size: 1.5rem;">Not Available</span>
-                        <h4 class="text-uppercase mb-4" th:text="${car.model}">Car Model</h4>
-                        <div class="d-flex justify-content-center mb-4">
-                            <div class="px-2">
-                                <i class="fa fa-car text-primary mr-1"></i>
-                                <span th:text="${car.modelYear}">Year</span>
-                            </div>
-                            <div class="px-2 border-left border-right">
-                                <i class="fa fa-cogs text-primary mr-1"></i>
-                                <span th:text="${car.transmission}">Transmission</span>
-                            </div>
-                            <div class="px-2">
-                                <i class="fa fa-road text-primary mr-1"></i>
-                                <span th:text="${car.km}">Mileage</span>
-                            </div>
+<!-- Buy A Car Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">
+        <h1 class="display-4 text-uppercase text-center mb-5">Find Your Car</h1>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-2" th:each="car : ${cars}">
+                <div class="rent-item mb-4">
+                    <img class="img-fluid mb-4" th:if="${car.isAvailable()}" th:src="@{${car.imagePath}}"
+                         alt="Car image">
+                    <img class="img-fluid mb-4" th:if="${!car.isAvailable()}" th:src="@{${car.imagePath}}"
+                         alt="Car image" style="opacity: 0.5; position: relative;">
+                    <span th:if="${!car.isAvailable()}"
+                          style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0, 0, 0, 0.5); padding: 10px; font-size: 1.5rem;">Reserved</span>
+                    <h4 class="text-uppercase mb-4" th:text="${car.model}">Car Model</h4>
+                    <div class="d-flex justify-content-center mb-4">
+                        <div class="px-2">
+                            <i class="fa fa-car text-primary mr-1"></i>
+                            <span th:text="${car.modelYear}">Year</span>
                         </div>
-                        <a class="btn btn-primary px-3" th:href="@{'/booking/' + ${car.chassisSerialNumber}}" th:text="'$' + ${car.price} + '/Day'">Price/Day</a>
+                        <div class="px-2 border-left border-right">
+                            <i class="fa fa-cogs text-primary mr-1"></i>
+                            <span th:text="${car.transmission}">Transmission</span>
+                        </div>
+                        <div class="px-2">
+                            <i class="fa fa-road text-primary mr-1"></i>
+                            <span th:text="${car.km}">Mileage</span>
+                        </div>
                     </div>
+                    <a class="btn btn-primary px-3" th:href="@{'/detail/' + ${car.chassisSerialNumber}}"
+                       th:text="'$' + ${car.price}"></a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Rent A Car End -->
+</div>
+<!-- Buy A Car End -->
 
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="owl-carousel vendor-carousel">
-                <div class="bg-light p-4">
-                    <img src="img/vendor-1.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-2.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-3.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-4.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-5.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-6.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-7.png" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="img/vendor-8.png" alt="">
-                </div>
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="container py-5">
+        <div class="owl-carousel vendor-carousel">
+            <div class="bg-light p-4">
+                <img src="img/vendor-1.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-2.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-3.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-4.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-5.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-6.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-7.png" alt="">
+            </div>
+            <div class="bg-light p-4">
+                <img src="img/vendor-8.png" alt="">
             </div>
         </div>
     </div>
-    <!-- Vendor End -->
+</div>
+<!-- Vendor End -->
 
-    <!-- Footer Start -->
+<!-- Footer Start -->
 <footer th:replace="~{layout/layout ::footer}"></footer>
-    <!-- Footer End -->
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="/lib/easing/easing.min.js"></script>
-    <script src="/lib/waypoints/waypoints.min.js"></script>
-    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment.min.js"></script>
-    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="/js/main.js"></script>
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
 </body>
 
 </html>

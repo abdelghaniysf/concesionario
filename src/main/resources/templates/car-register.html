@@ -10,29 +10,36 @@
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
             max-width: 700px;
         }
+
         .registration-form h2 {
             color: #FF8000; /* Orange color matching the site theme */
             margin-bottom: 30px;
         }
+
         .registration-form .form-group {
             margin-bottom: 20px;
         }
+
         .registration-form .form-control {
             border-radius: 5px;
             border: 1px solid #003366; /* Dark blue border */
         }
+
         .registration-form .btn-primary {
             background-color: #FF8000; /* Orange button */
             border-color: #FF8000;
         }
+
         .registration-form .btn-primary:hover {
             background-color: #e57300; /* Darker orange on hover */
             border-color: #e57300;
         }
+
         .registration-form .row > .col-md-6 {
             padding-right: 15px;
             padding-left: 15px;
         }
+
         .registration-container {
             margin-top: 50px;
         }
@@ -50,12 +57,15 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="chassisSerialNumber">Chassis Serial Number:</label>
-                        <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control" th:field="*{chassisSerialNumber}" required minlength="17">
+                        <input type="text" id="chassisSerialNumber" name="chassisSerialNumber" class="form-control"
+                               th:field="*{chassisSerialNumber}" required minlength="17">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="category">Category:</label>
                         <select id="category" name="category" class="form-control" required>
-                            <option th:each="category : ${categories}" th:value="${category}" th:text="${category.category}">Category</option>
+                            <option th:each="category : ${categories}" th:value="${category}"
+                                    th:text="${category.category}">Category
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -63,40 +73,50 @@
                     <div class="form-group col-md-6">
                         <label for="carBrand">Car Brand:</label>
                         <select id="carBrand" name="carBrand" class="form-control" required>
-                            <option th:each="carBrand : ${carBrands}" th:value="${carBrand}" th:text="${carBrand.name}">Car Brand</option>
+                            <option th:each="carBrand : ${carBrands}" th:value="${carBrand}" th:text="${carBrand.name}">
+                                Car Brand
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="engineDisplacement">Engine Displacement:</label>
-                        <input type="number" id="engineDisplacement" name="engineDisplacement" class="form-control" step="0.01" th:field="*{motor.engineCc}" required>
+                        <input type="number" id="engineDisplacement" name="engineDisplacement" class="form-control"
+                               step="0.01" th:field="*{motor.engineCc}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="engineDescription">Engine Description:</label>
-                        <input type="text" id="engineDescription" name="engineDescription" class="form-control" th:field="*{motor.description}" required>
+                        <input type="text" id="engineDescription" name="engineDescription" class="form-control"
+                               th:field="*{motor.description}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="engineVolume">Engine Volume:</label>
-                        <input type="number" id="engineVolume" name="motor.engineVolume" class="form-control" step="0.01" th:field="*{motor.engineVolume}" required>
+                        <input type="number" id="engineVolume" name="motor.engineVolume" class="form-control"
+                               step="0.01" th:field="*{motor.engineVolume}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="fuelType">Fuel Type:</label>
-                        <select id="fuelType" name="fuelType" class="form-control" th:field="*{motor.fuelType}"  required>
-                            <option th:each="fuelType : ${fuelTypes}" th:value="${fuelType}" th:text="${fuelType.fuelTypeEnum}" >Fuel Type</option>
+                        <select id="fuelType" name="fuelType" class="form-control" th:field="*{motor.fuelType}"
+                                required>
+                            <option th:each="fuelType : ${fuelTypes}" th:value="${fuelType}"
+                                    th:text="${fuelType.fuelTypeEnum}">Fuel Type
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="torque">Torque:</label>
-                        <input type="number" id="torque" name="motor.torque" class="form-control" th:field="*{motor.torque}" required>
+                        <input type="number" id="torque" name="motor.torque" class="form-control"
+                               th:field="*{motor.torque}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="horsepower">Horsepower:</label>
-                        <input type="number" id="horsepower" name="motor.horsepower" class="form-control" th:field="*{motor.horsepower}" required>
+                        <input type="number" id="horsepower" name="motor.horsepower" class="form-control"
+                               th:field="*{motor.horsepower}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="km">Kilometers:</label>
@@ -106,7 +126,8 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="description">Car Description:</label>
-                        <input type="text" id="description" name="description" class="form-control" th:field="*{description}" required>
+                        <input type="text" id="description" name="description" class="form-control"
+                               th:field="*{description}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="model">Model:</label>
@@ -116,7 +137,8 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="modelYear">Model Year:</label>
-                        <input type="date" id="modelYear" name="modelYear" class="form-control" th:field="*{modelYear}" required>
+                        <input type="date" id="modelYear" name="modelYear" class="form-control" th:field="*{modelYear}"
+                               required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="color">Color:</label>
@@ -126,48 +148,60 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="numberDoors">Number of Doors:</label>
-                        <input type="number" id="numberDoors" name="numberDoors" class="form-control" th:field="*{numberDoors}" required>
+                        <input type="number" id="numberDoors" name="numberDoors" class="form-control"
+                               th:field="*{numberDoors}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="transmission">Transmission:</label>
                         <select id="transmission" name="transmission" class="form-control" required>
-                            <option th:each="transmission : ${transmissionTypes}" th:value="${transmission}" th:text="${transmission.description}">Transmission</option>
+                            <option th:each="transmission : ${transmissionTypes}" th:value="${transmission}"
+                                    th:text="${transmission.description}">Transmission
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="weight">Weight:</label>
-                        <input type="number" id="weight" name="weight" class="form-control" th:field="*{weight}"  required>
+                        <input type="number" id="weight" name="weight" class="form-control" th:field="*{weight}"
+                               required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="numberSeats">Number of Seats:</label>
-                        <input type="number" id="numberSeats" name="numberSeats" class="form-control" th:field="*{numberSeats}" required>
+                        <input type="number" id="numberSeats" name="numberSeats" class="form-control"
+                               th:field="*{numberSeats}" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="traction">Traction:</label>
                         <select id="traction" name="traction" class="form-control" required>
-                            <option th:each="traction : ${tractionTypes}" th:value="${traction}" th:text="${traction.description}">Traction</option>
+                            <option th:each="traction : ${tractionTypes}" th:value="${traction}"
+                                    th:text="${traction.description}">Traction
+                            </option>
                         </select>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="steering">Steering:</label>
                         <select id="steering" name="steering" class="form-control" required>
-                            <option th:each="steering : ${steeringTypes}" th:value="${steering}" th:text="${steering.displayName}">Steering</option>
+                            <option th:each="steering : ${steeringTypes}" th:value="${steering}"
+                                    th:text="${steering.displayName}">Steering
+                            </option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="price">Price:</label>
-                        <input type="number" id="price" name="price" class="form-control" step="0.01" th:field="*{price}" required>
+                        <input type="number" id="price" name="price" class="form-control" step="0.01"
+                               th:field="*{price}" required>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="carFor">Car For:</label>
                         <select id="carFor" name="carFor" class="form-control" required>
-                            <option th:each="carFor : ${carFors}" th:value="${carFor}" th:text="${carFor.carFor}">Car For</option>
+                            <option th:each="carFor : ${carFors}" th:value="${carFor}" th:text="${carFor.carFor}">Car
+                                For
+                            </option>
                         </select>
                     </div>
                 </div>

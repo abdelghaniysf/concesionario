@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -61,12 +62,32 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@Valid @ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
-        System.out.println(user);
         if (result.hasErrors()) {
             System.out.println(result.getAllErrors());
             return "register";
         }
         userService.createUser(user);
         return "redirect:/login";
+    }
+
+    @GetMapping("/my-account")
+    public String profile(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String username = userDetails.getUsername();
+            model.addAttribute("user", userService.getUserByUsername(username).orElseThrow());
+        }
+        return "my-account";
+    }
+
+    @PostMapping("/profile")
+    public String profileUpdate(@ModelAttribute("user") UserDTO user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "my-account";
+        }
+        System.out.println(user);
+        userService.updateUser(user);
+        return "redirect:/";
     }
 }
