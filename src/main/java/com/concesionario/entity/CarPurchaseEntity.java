@@ -25,9 +25,9 @@ public class CarPurchaseEntity implements Serializable {
     private Double total;
     @ManyToOne
     @MapsId(value = "purchaseInvoiceNumber")
-    @JoinColumn(name = "purchase_invoice_number",insertable = false, updatable = false)
+    @JoinColumn(name = "purchase_invoice_number", insertable = false, updatable = false)
     private PurchaseEntity purchaseEntity;
     @ManyToOne
-    @JoinColumn(name = "chassis_serial_number",insertable = false, updatable = false)
+    @JoinColumn(name = "chassis_serial_number", insertable = false, updatable = false)
     private CarEntity carEntity;
 }

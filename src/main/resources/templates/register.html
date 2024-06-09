@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/layout :: head}">
 </head>
 <body>
@@ -65,7 +65,7 @@
         <div class="registration-form">
             <div class="container text-center"><h2 class="text-primary">Create an Account</h2></div>
             <br>
-            <form th:action="@{/my-account}" method="POST" th:object="${user}" onsubmit="validatePassword(event)">
+            <form th:action="@{/register}" method="POST" th:object="${user}" onsubmit="validatePassword(event)">
                 <!-- Mostrar mensaje de error si existe -->
                 <div th:if="${registrationError}" class="alert alert-danger" role="alert">
                     <p th:text="${registrationError}"></p>

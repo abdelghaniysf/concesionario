@@ -5,11 +5,9 @@ import com.concesionario.validation.anotation.ExistEmail;
 import com.concesionario.validation.anotation.ExistNationalId;
 import com.concesionario.validation.anotation.ExistNumber;
 import com.concesionario.validation.anotation.ExistUsername;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
-
 
 import java.util.List;
 

@@ -5,7 +5,6 @@ import com.concesionario.entity.SaleEntity;
 import com.concesionario.entity.enums.Location;
 import com.concesionario.service.impl.CarService;
 import com.concesionario.service.impl.SaleService;
-import com.concesionario.service.impl.UserDetailsServiceImpl;
 import com.concesionario.service.impl.UserEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -23,7 +22,6 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/detail")
 public class BuyController {
 
     @Autowired
@@ -35,7 +33,7 @@ public class BuyController {
     @Autowired
     private SaleService saleService;
 
-    @GetMapping("/{chassisSerialNumber}")
+    @GetMapping("/detail/{chassisSerialNumber}")
     public String getDetail(@PathVariable String chassisSerialNumber, Model model) {
         List<CarEntity> carsForSale = carService.findCarsForSale();
         model.addAttribute("locations", Location.values());
@@ -57,8 +55,9 @@ public class BuyController {
             return "car-not-found";
         }
     }
-    @PostMapping("/{chassisSerialNumber}")
-    public String buyCar(@PathVariable String chassisSerialNumber,SaleEntity sale) {
+
+    @PostMapping("/detail/{chassisSerialNumber}")
+    public String buyCar(@PathVariable String chassisSerialNumber, SaleEntity sale) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<CarEntity> carOptional = carService.getCarByChassisSerialNumber(chassisSerialNumber);
         if (carOptional.isPresent()) {
@@ -73,8 +72,14 @@ public class BuyController {
             sale.setPrice(car.getPrice());
             saleService.saveSale(sale);
             return "redirect:/car-sale";
-        }else{
+        } else {
             return "car-not-found";
         }
+    }
+
+    @GetMapping("/cancel-sale/{saleId}")
+    public String cancelSale(@PathVariable Long saleId) {
+        saleService.cancelSale(saleId);
+        return "redirect:/my-operations";
     }
 }

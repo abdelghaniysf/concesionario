@@ -6,6 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum CarFor {
-    RENT("Rent"),SALE("Sale");
+    RENT("Rent"), SALE("Sale");
     private final String carFor;
 }

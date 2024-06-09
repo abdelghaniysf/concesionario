@@ -1,7 +1,6 @@
 package com.concesionario.service.impl;
 
 
-
 import com.concesionario.entity.user.UserEntity;
 import com.concesionario.repository.IUserEntityRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         List<SimpleGrantedAuthority> grantedAuthorities = user.getRoleEntities().stream()
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole().name())).toList();
 
-        UserDetails userDetails =new User(user.getUsername(),user.getPassword(),grantedAuthorities);
+        UserDetails userDetails = new User(user.getUsername(), user.getPassword(), grantedAuthorities);
         return userDetails;
     }
 

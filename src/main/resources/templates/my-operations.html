@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/layout :: head}">
+</head>
+<body>
+<header th:replace="~{layout/layout :: header}"></header>
+<div class="container p-5 bg-secondary mt-5" style="border: 3px solid #E57300FF">
+    <div class="content-section">
+        <div>
+            <h2 class="text-primary">My Rentals</h2>
+            <table class="table table-striped-columns">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Car</th>
+                    <th>Pickup Location</th>
+                    <th>Drop Location</th>
+                    <th>Pickup Date</th>
+                    <th>Pickup Time</th>
+                    <th>Special Request</th>
+                    <th>Payment Method</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="booking : ${bookings}">
+                    <td th:text="${booking.id}"></td>
+                    <td th:text="${booking.car.chassisSerialNumber}"></td>
+                    <td th:text="${booking.pickupLocation}"></td>
+                    <td th:text="${booking.dropLocation}"></td>
+                    <td th:text="${booking.pickupDate}"></td>
+                    <td th:text="${booking.pickupTime}"></td>
+                    <td th:text="${booking.specialRequest}"></td>
+                    <td th:text="${booking.paymentMethod}"></td>
+                    <td><a class="btn btn-danger" th:href="@{/cancel-booking/{id}(id=${booking.id})}">Cancel Rental</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="container p-5 bg-secondary mt-5" style="border: 3px solid #E57300FF">
+    <div class="content-section">
+        <div>
+            <h2 class="text-primary">My Reservations</h2>
+            <table class="table table-striped-columns">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Chassis Serial Number</th>
+                    <th>Model</th>
+                    <th>Price</th>
+                    <th>Sale Date</th>
+                    <th>Pickup Location</th>
+                    <th>Pickup Date</th>
+                    <th>Pickup Time</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sale : ${sales}">
+                    <td th:text="${sale.id}"></td>
+                    <td th:text="${sale.chassisSerialNumber}"></td>
+                    <td th:text="${sale.model}"></td>
+                    <td th:text="${sale.price}"></td>
+                    <td th:text="${#temporals.format(sale.saleDateTime, 'dd/MM/yyyy hh:mm')}"></td>
+                    <td th:text="${sale.pickupLocation}"></td>
+                    <td th:text="${sale.pickupDate}"></td>
+                    <td th:text="${sale.pickupTime}"></td>
+                    <td><a class="btn btn-danger" th:href="@{/cancel-sale/{id}(id=${sale.id})}">Cancel Reservation</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<footer th:replace="~{layout/layout :: footer}"></footer>
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/waypoints/waypoints.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+</body>
+</html>

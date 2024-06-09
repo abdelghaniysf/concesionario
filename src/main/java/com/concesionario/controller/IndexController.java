@@ -6,48 +6,48 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    @GetMapping({"index","/"})
-    public String getIndex(){
+    @GetMapping({"index", "/"})
+    public String getIndex() {
         return "index";
     }
 
     @GetMapping("about")
-    public String getAbout(){
+    public String getAbout() {
         return "about";
     }
 
     @GetMapping("service")
-    public String getService(){
+    public String getService() {
         return "service";
     }
 
     @GetMapping("contact")
-    public String getContact(){
+    public String getContact() {
         return "contact";
     }
 
     @GetMapping("team")
-    public String getTeam(){
+    public String getTeam() {
         return "team";
     }
 
     @GetMapping("testimonial")
-    public String getTestimonial(){
+    public String getTestimonial() {
         return "testimonial";
     }
 
     @GetMapping("privacy")
-    public String getPrivacy(){
+    public String getPrivacy() {
         return "privacy";
     }
 
     @GetMapping("terms")
-    public String getTerms(){
+    public String getTerms() {
         return "terms-conditions";
     }
 
     @GetMapping("car-not-found")
-    public String getCarNotFound(){
+    public String getCarNotFound() {
         return "car-not-found";
     }
 }

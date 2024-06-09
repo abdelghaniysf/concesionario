@@ -41,7 +41,7 @@ public class PurchaseEntity implements Serializable {
     private String paymentMethod;
 
     @ManyToOne
-    @JoinColumn(name ="user_id",insertable = false,updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserEntity userEntity;
 
     @OneToMany(mappedBy = "purchaseEntity", cascade = CascadeType.ALL)

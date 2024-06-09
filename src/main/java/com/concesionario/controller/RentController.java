@@ -6,7 +6,6 @@ import com.concesionario.entity.enums.Location;
 import com.concesionario.entity.user.UserEntity;
 import com.concesionario.service.impl.BookingService;
 import com.concesionario.service.impl.CarService;
-import com.concesionario.service.impl.UserDetailsServiceImpl;
 import com.concesionario.service.impl.UserEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/booking")
 public class RentController {
 
     @Autowired
@@ -31,7 +29,7 @@ public class RentController {
     @Autowired
     private BookingService bookingService;
 
-    @GetMapping("/{chassisSerialNumber}")
+    @GetMapping("/booking/{chassisSerialNumber}")
     public String booking(@PathVariable String chassisSerialNumber, Model model) {
         model.addAttribute("locations", Location.values());
 
@@ -52,7 +50,7 @@ public class RentController {
         }
     }
 
-    @PostMapping("/{chassisSerialNumber}")
+    @PostMapping("/booking/{chassisSerialNumber}")
     public String bookCar(@PathVariable String chassisSerialNumber, @ModelAttribute("booking") BookingEntity booking) {
         Optional<CarEntity> carOptional = carService.getCarByChassisSerialNumber(chassisSerialNumber);
         if (carOptional.isPresent()) {
@@ -80,6 +78,12 @@ public class RentController {
         } else {
             return "car-not-found";
         }
+    }
+
+    @GetMapping("/cancel-booking/{bookingId}")
+    public String cancelRent(@PathVariable Long bookingId) {
+        bookingService.cancelBooking(bookingId);
+        return "redirect:/my-operations";
     }
 
 }

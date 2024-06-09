@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{layout/layout :: head}">
+    <!-- Incluye SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
 <body>
-<header th:replace="~{layout/layout :: header}">
-</header>
+<header th:replace="~{layout/layout :: header}"></header>
 <div class="container p-5 bg-secondary mt-5" style="border: 3px solid #E57300FF">
     <div class="registration-form">
         <div class="container text-center"><h2 class="text-primary">My Account</h2></div>
         <br>
-        <form th:action="@{/profile}" method="POST" th:object="${user}">
+        <form th:action="@{/success-update}" method="POST" th:object="${user}">
             <!-- Mostrar mensaje de error si existe -->
             <div th:if="${registrationError}" class="alert alert-danger" role="alert">
                 <p th:text="${registrationError}"></p>
             </div>
+
+            <!-- Campos ocultos para valores null -->
+            <input type="hidden" name="nationalId" th:value="${user.nationalId ?: ''}">
+            <input type="hidden" name="password" th:value="${user.password ?: ''}">
+            <input type="hidden" name="roleEntities" th:value="${user.roleEntities ?: ''}">
+
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="firstname" class="text-white">First Name</label>
@@ -47,23 +55,6 @@
             </div>
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="nationalId" class="text-white">National ID</label>
-                    <input type="text" class="form-control"
-                           style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="nationalId"
-                           name="nationalId" th:field="*{nationalId}" required pattern="[A-Za-z0-9]{6,}">
-                    <div class="text-danger" th:if="${#fields.hasErrors('nationalId')}" th:errors="*{nationalId}"></div>
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="phone-number" class="text-white">Phone Number</label>
-                    <input type="tel" class="form-control"
-                           style="background: linear-gradient(135deg, #3498db, #2c3e50);color: white;" id="phone-number"
-                           name="phoneNumber" th:field="*{phoneNumber}" required pattern="\+?[0-9]{10,}">
-                    <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}"
-                         th:errors="*{phoneNumber}"></div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group col-md-6">
                     <label for="dob" class="text-white">Date of Birth</label>
                     <input type="date" class="form-control"
                            style="background: linear-gradient(135deg, #2c3e50, #3498db);color: white;" id="dob"
@@ -79,9 +70,21 @@
                     <div class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="phone-number" class="text-white">Phone Number</label>
+                    <input type="tel" class="form-control"
+                           style="background: linear-gradient(135deg, #2c3e50,#3498db);color: white;" id="phone-number"
+                           name="phoneNumber" th:field="*{phoneNumber}" required pattern="\+?[0-9]{10,}">
+                    <div class="text-danger" th:if="${#fields.hasErrors('phoneNumber')}"
+                         th:errors="*{phoneNumber}"></div>
+                </div>
+            </div>
             <br>
             <div class="container text-center">
                 <button type="submit" class="btn btn-primary btn-lg">Modify</button>
+                <!-- Botón para eliminar cuenta -->
+                <button type="button" class="btn btn-danger btn-lg" id="deleteAccountBtn">Delete Account</button>
             </div>
         </form>
     </div>
@@ -95,6 +98,7 @@
 <!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="/lib/easing/easing.min.js"></script>
 <script src="/lib/waypoints/waypoints.min.js"></script>
 <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
@@ -102,8 +106,39 @@
 <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>
-</body>
 
+<script>
+    document.getElementById('deleteAccountBtn').addEventListener('click', function () {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this account!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Crear un formulario para enviar la solicitud de eliminación
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/delete-account';
+
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = '_method';
+                input.value = 'DELETE';
+                form.appendChild(input);
+
+                document.body.appendChild(form);
+                form.submit();
+            }
+        });
+    });
+</script>
+
+</body>
 </html>

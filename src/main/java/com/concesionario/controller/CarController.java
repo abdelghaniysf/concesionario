@@ -7,7 +7,9 @@ import com.concesionario.service.impl.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class CarController {
     private CarService carService;
 
     @GetMapping("car-rent")
-    public String getCarRent(Model model){
+    public String getCarRent(Model model) {
         List<CarEntity> carsForRent = carService.findCarsForRent();
         model.addAttribute("cars", carsForRent);
         model.addAttribute("locations", Location.values());
@@ -47,8 +49,9 @@ public class CarController {
         model.addAttribute("car", new CarEntity());
         return "car-register";
     }
+
     @PostMapping("/car-register")
-    public String registerCar( @ModelAttribute CarEntity car, Model model) {
+    public String registerCar(@ModelAttribute CarEntity car, Model model) {
         carService.save(car);
         return "redirect:/";
     }

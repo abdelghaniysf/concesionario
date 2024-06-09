@@ -1,7 +1,6 @@
 package com.concesionario.service.impl;
 
 
-
 import com.concesionario.entity.dto.UserDTO;
 import com.concesionario.entity.enums.RoleEnum;
 import com.concesionario.entity.user.RoleEntity;
@@ -61,10 +60,17 @@ public class UserEntityServiceImpl implements IUserEntityService {
     }
 
     @Override
-    public UserEntity updateUser(UserDTO user) {
+    public UserEntity updateUser(UserEntity user) {
         Optional<UserEntity> userOptional = userRepository.findById(user.getNationalId());
-        if(userOptional.isPresent()){
+        if (userOptional.isPresent()) {
             UserEntity userUpdated = userOptional.get();
+            userUpdated.setFirstname(user.getFirstname());
+            userUpdated.setLastname(user.getLastname());
+            userUpdated.setEmail(user.getEmail());
+            userUpdated.setAddress(user.getAddress());
+            userUpdated.setDateOfBirth(user.getDateOfBirth());
+            userUpdated.setPhoneNumber(user.getPhoneNumber());
+            userUpdated.setRoleEntities(user.getRoleEntities());
             return userRepository.save(userUpdated);
         }
         return null;

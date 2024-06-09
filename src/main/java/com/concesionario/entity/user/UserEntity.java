@@ -1,16 +1,16 @@
 package com.concesionario.entity.user;
 
-import com.concesionario.entity.PurchaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 
-
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -21,10 +21,10 @@ public class UserEntity implements Serializable {
     private static final long serialVersionUID = -6196622178756080206L;
 
     @Id
-    @Column(name = "national_id",unique = true)
+    @Column(name = "national_id", unique = true)
     private String nationalId;
 
-    @Column(name = "username",unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "firstname")
@@ -36,10 +36,10 @@ public class UserEntity implements Serializable {
     @Column(name = "email")
     private String email;
 
-    @Column(name="address")
+    @Column(name = "address")
     private String address;
 
-    @Column(name="date_of_birth")
+    @Column(name = "date_of_birth")
     private String dateOfBirth;
 
     @Column(name = "phone_number")
@@ -49,12 +49,8 @@ public class UserEntity implements Serializable {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "users_roles",joinColumns = @JoinColumn(name = "user_id" ),
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
-            ,uniqueConstraints = { @UniqueConstraint(columnNames = {"user_id","role_id"})})
+            , uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role_id"})})
     private List<RoleEntity> roleEntities;
-
-    @OneToMany(mappedBy = "userEntity",cascade = CascadeType.ALL)
-    private List<PurchaseEntity> purchaseEntityList;
-
 }

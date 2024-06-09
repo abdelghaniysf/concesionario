@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -40,9 +39,9 @@ public class WebSecurityConfig {
                         .ignoringRequestMatchers(toH2Console())
                         .disable()
                 )
-                .authorizeHttpRequests(authz->
+                .authorizeHttpRequests(authz ->
                         authz.requestMatchers(resources).permitAll()
-                                .requestMatchers("/","/register","/login","/error/**","/index","/car-sale","/car-rent","/about","/privacy","/terms","/team","/testimonial","/h2-console/**","/detail","/booking").permitAll()
+                                .requestMatchers("/", "/register", "/login", "/error/**", "/index", "/car-sale", "/car-rent", "/about", "/privacy", "/terms", "/team", "/testimonial", "/h2-console/**", "/detail", "/booking").permitAll()
                                 .anyRequest().authenticated())
                 .headers(headers -> headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .formLogin((form) -> form

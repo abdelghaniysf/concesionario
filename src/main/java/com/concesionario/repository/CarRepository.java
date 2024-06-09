@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface CarRepository extends JpaRepository<CarEntity, Long> {
     Optional<CarEntity> findByChassisSerialNumber(String chassisSerialNumber);
+
     List<CarEntity> findByCarFor(CarFor carFor);
 }
