@@ -20,12 +20,12 @@ public class CarService implements ICarService {
     }
 
 
-    public List<CarEntity> findAvailableCarsForSale() {
-        return carRepository.findByCarForAndAvailable(CarFor.SALE,true);
+    public List<CarEntity> findCarsForSale() {
+        return carRepository.findByCarFor(CarFor.SALE);
     }
 
-    public List<CarEntity> findAvailableCarsForRent(boolean available) {
-        return carRepository.findByCarForAndAvailable(CarFor.RENT, available);
+    public List<CarEntity> findCarsForRent() {
+        return carRepository.findByCarFor(CarFor.RENT);
     }
 
     @Override

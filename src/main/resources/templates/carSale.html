@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:replace="~{layout/layout :: head}">
+<head th:replace="~{layout/layout :: head}"></head>
 <body>
     <header>
         <div class="container-fluid bg-dark py-3 px-lg-5 d-none d-lg-block">
@@ -95,7 +95,9 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 mb-2" th:each="car : ${cars}">
                     <div class="rent-item mb-4">
-                        <img class="img-fluid mb-4" th:src="@{${car.imagePath}}" alt="Car image">
+                        <img class="img-fluid mb-4" th:if="${car.isAvailable()}" th:src="@{${car.imagePath}}" alt="Car image">
+                        <img class="img-fluid mb-4" th:if="${!car.isAvailable()}" th:src="@{${car.imagePath}}" alt="Car image" style="opacity: 0.5; position: relative;">
+                        <span th:if="${!car.isAvailable()}" style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); color: white; background: rgba(0, 0, 0, 0.5); padding: 10px; font-size: 1.5rem;">Reserved</span>
                         <h4 class="text-uppercase mb-4" th:text="${car.model}">Car Model</h4>
                         <div class="d-flex justify-content-center mb-4">
                             <div class="px-2">

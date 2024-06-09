@@ -163,7 +163,8 @@
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
+                        <button th:if="${car.isAvailable()}" type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
+                        <button th:if="${!car.isAvailable()}" type="submit" class="btn btn-block btn-primary py-3" disabled>Not Available Now</button>
                     </div>
                 </div>
             </div>

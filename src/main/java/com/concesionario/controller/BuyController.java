@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -36,9 +37,9 @@ public class BuyController {
 
     @GetMapping("/{chassisSerialNumber}")
     public String getDetail(@PathVariable String chassisSerialNumber, Model model) {
-        List<CarEntity> carsForSale = carService.findAvailableCarsForSale();
+        List<CarEntity> carsForSale = carService.findCarsForSale();
         model.addAttribute("locations", Location.values());
-        model.addAttribute("cars", carsForSale);
+        model.addAttribute("cars", carsForSale.stream().filter(car -> !Objects.equals(car.getChassisSerialNumber(), chassisSerialNumber)).toList());
         model.addAttribute("sale", new SaleEntity());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -58,8 +59,6 @@ public class BuyController {
     }
     @PostMapping("/{chassisSerialNumber}")
     public String buyCar(@PathVariable String chassisSerialNumber,SaleEntity sale) {
-        System.out.println(sale);
-        System.out.println(chassisSerialNumber);
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Optional<CarEntity> carOptional = carService.getCarByChassisSerialNumber(chassisSerialNumber);
         if (carOptional.isPresent()) {
@@ -73,7 +72,7 @@ public class BuyController {
             sale.setModel(car.getModel());
             sale.setPrice(car.getPrice());
             saleService.saveSale(sale);
-            return "redirect:/";
+            return "redirect:/car-sale";
         }else{
             return "car-not-found";
         }
