@@ -86,5 +86,10 @@ public class CarEntity implements Serializable {
     private String imagePath;
 
     @Column(name = "available")
-    private boolean available = true;
+    private boolean available;
+
+    @PrePersist
+    public void available() {
+        this.available = true;
+    }
 }
