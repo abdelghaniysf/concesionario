@@ -50,9 +50,14 @@
                         <a th:href="@{/car-sale}" class="nav-item nav-link">Car buying</a>
                         <a th:href="@{/car-rent}" class="nav-item nav-link">Car renting</a>
                         <a th:href="@{/about}" class="nav-item nav-link">About</a>
-                        <a th:href="@{/logout}" sec:authorize="isAuthenticated()"  class="nav-item nav-link">
-                            Logout
-                        </a>
+                        <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                            <a href="#" class="nav-link dropdown-toggle" th:text="${#authentication.principal.username}" data-toggle="dropdown"></a>
+                            <div class="dropdown-menu">
+                                <a th:href="@{/my-account}" class="dropdown-item">My Account</a>
+                                <a th:href="@{/my-operations}" class="dropdown-item">My Operations</a>
+                                <a th:href="@{/logout}" class="dropdown-item">Logout</a>
+                            </div>
+                        </div>
                         <a th:href="@{/login}" sec:authorize="!isAuthenticated()" class="nav-item nav-link">
                             <i class="fa fa-user"></i> Login
                         </a>
