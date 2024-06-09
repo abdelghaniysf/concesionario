@@ -45,4 +45,9 @@ public class IndexController {
     public String getTerms(){
         return "terms&conditions";
     }
+
+    @GetMapping("car-not-found")
+    public String getCarNotFound(){
+        return "car-not-found";
+    }
 }

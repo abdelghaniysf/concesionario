@@ -61,6 +61,22 @@
                 <i class="fa fa-shield-alt text-primary mr-2"></i>
                 <span th:text="'Category: ' + ${car.category}">Category</span>
             </div>
+            <div class="col-md-3 col-6 mb-2">
+                <i class="fa fa-horse text-primary mr-2"></i>
+                <span th:text="'Horsepower: ' + ${car.motor.horsepower} +' hp'">Horsepower</span>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <i class="fa fa-wrench text-primary mr-2"></i>
+                <span th:text="'Torque: ' + ${car.motor.torque} + ' Nm'">Torque</span>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <i class="fa fa-gas-pump text-primary mr-2"></i>
+                <span th:text="'Fuel type: ' + ${car.motor.fuelType}">Fuel type</span>
+            </div>
+            <div class="col-md-3 col-6 mb-2">
+                <i class="fa fa-oil-can text-primary mr-2"></i>
+                <span th:text="'Engine volume: ' + ${car.motor.engineVolume} + 'L'">Engine volume</span>
+            </div>
         </div>
     </div>
 </div>
