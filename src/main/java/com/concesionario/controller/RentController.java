@@ -8,6 +8,8 @@ import com.concesionario.service.impl.BookingService;
 import com.concesionario.service.impl.CarService;
 import com.concesionario.service.impl.UserEntityServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,34 +52,22 @@ public class RentController {
         }
     }
 
-    @PostMapping("/booking/{chassisSerialNumber}")
-    public String bookCar(@PathVariable String chassisSerialNumber, @ModelAttribute("booking") BookingEntity booking) {
-        Optional<CarEntity> carOptional = carService.getCarByChassisSerialNumber(chassisSerialNumber);
-        if (carOptional.isPresent()) {
-            CarEntity car = carOptional.get();
+    @PostMapping("/booking")
+    public ResponseEntity<?> bookCar(@RequestBody BookingEntity booking) {
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             if (authentication != null && authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
                 UserDetails userDetails = (UserDetails) authentication.getPrincipal();
                 String username = userDetails.getUsername();
                 UserEntity user = userService.getUserByUsername(username).orElseThrow();
-
-                booking.setCar(car);
                 booking.setUser(user);
-
-                // Guardar la reserva
                 bookingService.saveBooking(booking);
-
-                // Actualizar el estado del coche a no disponible
+                CarEntity car = booking.getCar();
                 car.setAvailable(false);
                 carService.save(car);
-
-                return "redirect:/car-rent";
+                return ResponseEntity.status(HttpStatus.OK).build();
             } else {
-                return "redirect:/login";
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("unauthorized");
             }
-        } else {
-            return "car-not-found";
-        }
     }
 
     @GetMapping("/cancel-booking/{bookingId}")

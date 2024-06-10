@@ -83,7 +83,7 @@
 <!-- Detail End -->
 
 <!-- Car Booking Start -->
-<form action="#" method="post" th:object="${booking}">
+<div th:object="${booking}">
     <div class="container-fluid pb-5">
         <div class="container">
             <div class="row">
@@ -177,10 +177,10 @@
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-                        <button th:if="${car.isAvailable()}" type="submit" class="btn btn-block btn-primary py-3">
+                        <button th:if="${car.isAvailable()}" th:onclick="sendBookingRequest([[${car}]])" class="btn btn-block btn-primary py-3">
                             Reserve Now
                         </button>
-                        <button th:if="${!car.isAvailable()}" type="submit" class="btn btn-block btn-primary py-3"
+                        <button th:if="${!car.isAvailable()}" class="btn btn-block btn-primary py-3"
                                 disabled>Not Available Now
                         </button>
                     </div>
@@ -188,7 +188,7 @@
             </div>
         </div>
     </div>
-</form>
+</div>
 <!-- Car Booking End -->
 
 <!-- Vendor Start -->
@@ -254,6 +254,71 @@
 <script src="/lib/tempusdominus/js/moment.min.js"></script>
 <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
 <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function sendBookingRequest(car) {
+        // Recolectar datos del formulario
+        var pickupLocation = document.querySelector('select[name="pickupLocation"]').value;
+        var dropLocation = document.querySelector('select[name="dropLocation"]').value;
+        var pickupDate = document.querySelector('input[name="pickupDate"]').value;
+        var pickupTime = document.querySelector('input[name="pickupTime"]').value;
+        var specialRequest = document.querySelector('textarea[name="specialRequest"]').value;
+        var paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
+
+        var booking = {
+            car: car,
+            pickupLocation: pickupLocation,
+            dropLocation: dropLocation,
+            pickupDate: pickupDate,
+            pickupTime: pickupTime,
+            specialRequest: specialRequest,
+            paymentMethod: paymentMethod
+        };
+
+        fetch('/booking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        }).then(response => {
+            if (response.status === 200) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'The car has been successfully registered.'
+                }).then(() => {
+                    location.reload();
+                });
+            } else if (response.status === 401) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Unauthorized',
+                    text: 'You are not authorized to perform this action.'
+                });
+            } else if (response.status === 404) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Found',
+                    text: 'The requested resource was not found.'
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Error code: ' + response.status
+                });
+            }
+        }).catch(error => {
+            console.error('Error:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'An unexpected error occurred.'
+            });
+        });
+    }
+</script>
 
 <!-- Template Javascript -->
 <script src="/js/main.js"></script>

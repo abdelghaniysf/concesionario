@@ -82,6 +82,7 @@
                             <div class="dropdown-menu">
                                 <a th:href="@{/my-account}" class="dropdown-item">My Account</a>
                                 <a th:href="@{/my-operations}" class="dropdown-item">My Operations</a>
+                                <a sec:authorize="hasRole('ADMIN')" th:href="@{/car-register}" class="dropdown-item">Register a new Car</a>
                                 <a th:href="@{/logout}" class="dropdown-item">Logout</a>
                             </div>
                         </div>
@@ -121,10 +122,6 @@
                         & Conditions</a>
                     <a class="text-body mb-2" th:href="@{/register}" sec:authorize="!isAuthenticated()"><i
                             class="fa fa-angle-right text-white mr-2"></i>New Member Registration</a>
-                    <a class="text-body mb-2" th:href="@{/team}"><i
-                            class="fa fa-angle-right text-white mr-2"></i>Team</a>
-                    <a class="text-body mb-2" th:href="@{/testimonial}"><i
-                            class="fa fa-angle-right text-white mr-2"></i>Testimonial</a>
                     <a class="text-body mb-2" th:href="@{/contact}"><i class="fa fa-angle-right text-white mr-2"></i>Contact</a>
                 </div>
             </div>

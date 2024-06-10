@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,12 +33,29 @@ public class UserEntityServiceImpl implements IUserEntityService {
     @Override
     @Transactional
     public UserEntity createUser(UserDTO user) {
-        RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
+        // Obtener el rol de usuario
         RoleEntity roleUser = roleRepository.findByRole(RoleEnum.USER)
-                .orElseThrow(() -> new RuntimeException("Role not found"));
-        user.setRoleEntities(List.of(roleAdmin, roleUser));
+                .orElseThrow(() -> new RuntimeException("Role USER not found"));
+
+        // Inicializar la lista de roles con el rol de usuario
+        List<RoleEntity> roles = new ArrayList<>();
+        roles.add(roleUser);
+
+        // Verificar si el correo electrónico contiene '@admin.'
+        if (user.getEmail().contains("@admin.")) {
+            // Obtener el rol de administrador
+            RoleEntity roleAdmin = roleRepository.findByRole(RoleEnum.ADMIN)
+                    .orElseThrow(() -> new RuntimeException("Role ADMIN not found"));
+            // Añadir el rol de administrador a la lista de roles
+            roles.add(roleAdmin);
+        }
+
+        // Asignar los roles al usuario
+        user.setRoleEntities(roles);
+        // Encriptar la contraseña del usuario
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Crear la entidad de usuario
         UserEntity userEntity = UserEntity.builder()
                 .username(user.getUsername())
                 .nationalId(user.getNationalId())
@@ -50,8 +68,11 @@ public class UserEntityServiceImpl implements IUserEntityService {
                 .password(user.getPassword())
                 .roleEntities(user.getRoleEntities())
                 .build();
+
+        // Guardar la entidad de usuario en el repositorio
         return userRepository.save(userEntity);
     }
+
 
 
     @Override

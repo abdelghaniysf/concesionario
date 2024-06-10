@@ -26,16 +26,6 @@ public class IndexController {
         return "contact";
     }
 
-    @GetMapping("team")
-    public String getTeam() {
-        return "team";
-    }
-
-    @GetMapping("testimonial")
-    public String getTestimonial() {
-        return "testimonial";
-    }
-
     @GetMapping("privacy")
     public String getPrivacy() {
         return "privacy";

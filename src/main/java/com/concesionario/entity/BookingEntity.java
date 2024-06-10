@@ -49,6 +49,6 @@ public class BookingEntity implements Serializable {
     @Column(name = "special_request")
     private String specialRequest;
 
-    @Column
+    @Column(name="payment_method")
     private String paymentMethod;
 }
