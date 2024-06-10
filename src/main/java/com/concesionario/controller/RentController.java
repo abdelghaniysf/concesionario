@@ -34,7 +34,6 @@ public class RentController {
     @GetMapping("/booking/{chassisSerialNumber}")
     public String booking(@PathVariable String chassisSerialNumber, Model model) {
         model.addAttribute("locations", Location.values());
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.isAuthenticated() && !authentication.getPrincipal().equals("anonymousUser")) {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();

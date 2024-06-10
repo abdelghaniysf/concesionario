@@ -71,6 +71,34 @@
     </div>
     <!-- Navbar End -->
 </header>
+
+<div class="container-fluid bg-white pt-3 px-lg-5">
+    <form class="pb-3" th:action="@{/car-rent}" method="get">
+        <div class="row">
+            <!-- Categoría -->
+            <div class="col-12 col-md-4 mb-3">
+                <select class="custom-select px-4" name="category">
+                    <option value="" selected>Category</option>
+                    <option th:each="category : ${categories}" th:value="${category.name()}" th:text="${category.category}"></option>
+                </select>
+            </div>
+
+            <!-- Marca -->
+            <div class="col-12 col-md-4 mb-3">
+                <select class="custom-select px-4" name="brand">
+                    <option value="" selected>Brand</option>
+                    <option th:each="brand : ${brands}" th:value="${brand.name()}" th:text="${brand.name}"></option>
+                </select>
+            </div>
+
+            <!-- Botón de búsqueda -->
+            <div class="col-12 col-md-4 mb-3">
+                <button class="btn btn-primary btn-block" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <!-- Rent A Car Start -->
 <div class="container-fluid py-5">
     <div class="container pt-5 pb-3">

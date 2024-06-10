@@ -35,7 +35,7 @@ public class BuyController {
 
     @GetMapping("/detail/{chassisSerialNumber}")
     public String getDetail(@PathVariable String chassisSerialNumber, Model model) {
-        List<CarEntity> carsForSale = carService.findCarsForSale();
+        List<CarEntity> carsForSale = carService.findCarsForSale(null, null);
         model.addAttribute("locations", Location.values());
         model.addAttribute("cars", carsForSale.stream().filter(car -> !Objects.equals(car.getChassisSerialNumber(), chassisSerialNumber)).toList());
         model.addAttribute("sale", new SaleEntity());

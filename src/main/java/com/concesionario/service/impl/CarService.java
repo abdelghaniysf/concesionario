@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarService implements ICarService {
@@ -16,16 +17,38 @@ public class CarService implements ICarService {
     private CarRepository carRepository;
 
     public CarEntity save(CarEntity car) {
+
         return carRepository.save(car);
     }
 
 
-    public List<CarEntity> findCarsForSale() {
-        return carRepository.findByCarFor(CarFor.SALE);
+    public List<CarEntity> findCarsForSale(String category, String brand) {
+        List<CarEntity> cars = carRepository.findByCarFor(CarFor.SALE);
+        cars = filterCarEntities(category, brand, cars);
+        return cars;
     }
 
-    public List<CarEntity> findCarsForRent() {
-        return carRepository.findByCarFor(CarFor.RENT);
+
+
+    public List<CarEntity> findCarsForRent(String category, String brand) {
+        List<CarEntity> cars = carRepository.findByCarFor(CarFor.RENT);
+        cars = filterCarEntities(category, brand, cars);
+        return cars;
+    }
+
+    private  List<CarEntity> filterCarEntities(String category, String brand, List<CarEntity> cars) {
+        if (category != null && !category.isEmpty()) {
+            cars = cars.stream()
+                    .filter(car -> car.getCategory().name().equalsIgnoreCase(category))
+                    .collect(Collectors.toList());
+        }
+
+        if (brand != null && !brand.isEmpty()) {
+            cars = cars.stream()
+                    .filter(car -> car.getCarBrand().name().equalsIgnoreCase(brand))
+                    .collect(Collectors.toList());
+        }
+        return cars;
     }
 
     @Override

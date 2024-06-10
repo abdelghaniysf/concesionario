@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -21,16 +22,24 @@ public class CarController {
     private CarService carService;
 
     @GetMapping("car-rent")
-    public String getCarRent(Model model) {
-        List<CarEntity> carsForRent = carService.findCarsForRent();
+    public String getCarRent( @RequestParam(name = "category", required = false) String category,
+                              @RequestParam(name = "brand", required = false) String brand,
+                              Model model) {
+        model.addAttribute("brands", CarBrand.values());
+        model.addAttribute("categories", Category.values());
+        List<CarEntity> carsForRent =  carService.findCarsForRent(category, brand);
         model.addAttribute("cars", carsForRent);
         model.addAttribute("locations", Location.values());
         return "car-rent";
     }
 
     @GetMapping("car-sale")
-    public String getCarBuyPage(Model model) {
-        List<CarEntity> carsForSale = carService.findCarsForSale();
+    public String getCarBuyPage(@RequestParam(name = "category", required = false) String category,
+                                @RequestParam(name = "brand", required = false) String brand,
+                                Model model) {
+        model.addAttribute("brands", CarBrand.values());
+        model.addAttribute("categories", Category.values());
+        List<CarEntity> carsForSale = carService.findCarsForSale(category, brand);
         model.addAttribute("cars", carsForSale);
         model.addAttribute("locations", Location.values());
         return "car-sale";
